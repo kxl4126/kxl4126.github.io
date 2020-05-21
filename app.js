@@ -1,6 +1,11 @@
 //get list of options for each criteria
 //https://talent-backend.herokuapp.com/user/criteria
 
+const redirect_uri = 'https://kxl4126.github.io';
+const redirect_uri_encoded = 'https%3A%2F%2Fkxl4126.github.io';
+const client_id = '860zh5czatlpnt';
+const client_secret = 'KoYtnFvlSAHaSNWO',;
+
 const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
@@ -9,13 +14,8 @@ if (gen_code) { //authenticate user and pass to backend
 
     console.log("Code: " + gen_code);
 
-    $.post("https://www.linkedin.com/oauth/v2/accessToken",
+    $.post(`https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="${gen_code}"&redirect_uri=${redirect_uri_encoded}&client_id=${client_id}&client_secret=${client_secret}`,
       {
-        grant_type: 'authorization_code',
-        code: gen_code,
-        redirect_uri: 'https://kxl4126.github.io',
-        client_id: '860zh5czatlpnt',
-        client_secret: 'KoYtnFvlSAHaSNWO',
       },
       function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
