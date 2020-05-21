@@ -65,6 +65,7 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
         }
 
         select = document.getElementById("companies-select")
+
         if (criteria['companies']) {
             criteria['companies'].forEach((item, index) => {
                 var option = document.createElement("option");
@@ -73,17 +74,26 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
                 select.appendChild(option);
             })
         }
+
+        select = document.getElementById("companies-select")
+
+        if (criteria['locations']) {
+            criteria['locations'].forEach((item, index) => {
+                var option = document.createElement("option");
+                option.text = item;
+                option.value = item;
+                select.appendChild(option);
+            })
+        }
+
     });
 
-var mostRecentUsers = {};
+var mostRecentUsers = [];
 
-$.get("https://talent-backend.herokuapp.com/user", function(data, status){
-    // alert("Data: " + data["schools"] + "\nStatus: " + status);
-    mostRecentUsers = data['users'];
-    console.log(mostRecentUsers);
-})
-    .done(() => { //create cards
-        var cards = document.getElementById("cards");
+function createCards() {
+    $('#cards').empty();
+    console.log('create cards Called!')
+    var cards = document.getElementById("cards");
         if (mostRecentUsers) {
             mostRecentUsers.forEach((item, index) => {
                 var card = document.createElement("div");
@@ -112,12 +122,51 @@ $.get("https://talent-backend.herokuapp.com/user", function(data, status){
                     prevJob.setAttribute("class", "employee-prev-jobs");
                     card.appendChild(prevJob);
                 }
-
                 cards.appendChild(card);
-
             })
         }
+}
+
+$.post("https://talent-backend.herokuapp.com/user", function(data, status){
+    // alert("Data: " + data["schools"] + "\nStatus: " + status);
+    mostRecentUsers = data['users'];
+    console.log(mostRecentUsers);
+})
+    .done(() => {
+        createCards();
     });
 
+var searchFields = document.getElementsByClassName("search-input");
+console.log(searchFields)
+const idToParam = {
+    'college-search': 'collegeName',
+    'company-search': 'lastCompanyName',
+    'category-search': 'category',
+    'location-search': 'location'
+}
 
+$('.search-input').change(() => {
+    console.log("CHANGE")
+    var paramDict = {};
+    Array.from(searchFields).forEach((item, index) => {
+        if (item.value) {
+            paramDict[idToParam[item.id]] = item.value;
+        }
+    })
+    // paramDict['collegeName'] = 'Stanford';
+    console.log(paramDict);
+    $.ajax('https://talent-backend.herokuapp.com/user',
+        {
+            type: 'POST',
+            data: JSON.stringify(paramDict),
+            contentType: 'application/json',
+            success:
+    // $.get('https://talent-backend.herokuapp.com/user', paramDict,
+        function(data, status) {
+            console.log(data);
+            mostRecentUsers = data['users'];
+            console.log(mostRecentUsers);
+            createCards();
+    }});
+});
 

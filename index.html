@@ -16,25 +16,28 @@
   <div class="product-search">
       <div class="search-element">
         <label class="search-label">Education:</label>
-        <input class="search-input" list = "college_list" type="text" placeholder="College/University" name="query">
+        <input class="search-input" id = "college-search" list = "college_list" type="text" placeholder="College/University" name="query">
         <datalist id="college_list">
             <select id = "colleges-select" multiple size=8></select>
         </datalist>
       </div>
       <div class="search-element">
         <label class="search-label">Previous Company:</label>
-        <input class="search-input" list = "company_list" type="text" placeholder="Company" name="query">
+        <input class="search-input" id = "company-search" list = "company_list" type="text" placeholder="Company" name="query">
       <datalist id="company_list">
             <select id = "companies-select" multiple size=8></select>
         </datalist>
       </div>
       <div class="search-element">
         <label class="search-label">Desired Position:</label>
-        <input class="search-input" type="text" placeholder="Position" name="query">
+        <input class="search-input" id = "category-search" type="text" placeholder="Position" name="query">
       </div>
       <div class="search-element" id = "search-element-last">
         <label class="search-label">Location:</label>
-        <input class="search-input" type="text" placeholder="Location" name="query">
+        <input class="search-input" id = "location-search" type="text" placeholder="Location" name="query">
+          <datalist id="location_list">
+            <select id = "location-select" multiple size=8></select>
+        </datalist>
       </div>
 <!--      <a type="submit" class="search-button">Search</a>-->
   </div>
