@@ -4,7 +4,7 @@
 const redirect_uri = 'https://kxl4126.github.io';
 const redirect_uri_encoded = 'https%3A%2F%2Fkxl4126.github.io';
 const client_id = '860zh5czatlpnt';
-const client_secret = 'KoYtnFvlSAHaSNWO',;
+const client_secret = 'KoYtnFvlSAHaSNWO';
 
 const queryString = window.location.search;
 console.log(queryString);
