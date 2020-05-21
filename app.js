@@ -91,6 +91,7 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
     });
 
 var mostRecentUsers = [];
+var numPages = -1;
 
 function createCards() {
     $('#cards').empty();
@@ -132,6 +133,7 @@ function createCards() {
 $.post("https://talent-backend.herokuapp.com/user", function(data, status){
     // alert("Data: " + data["schools"] + "\nStatus: " + status);
     mostRecentUsers = data['users'];
+    numPages = data['count'];
     console.log(mostRecentUsers);
 })
     .done(() => {
@@ -167,6 +169,7 @@ $('.search-input').change(() => {
         function(data, status) {
             console.log(data);
             mostRecentUsers = data['users'];
+            numPages = data['count'];
             console.log(mostRecentUsers);
             createCards();
     }});
