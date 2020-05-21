@@ -1,6 +1,13 @@
 //get list of options for each criteria
 //https://talent-backend.herokuapp.com/user/criteria
 
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const code = urlParams.get('code');
+if (code) { //authenticate user and pass to backend
+    console.log("Code: " + code);
+}
 
 var criteria = {};
 $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, status){
