@@ -14,12 +14,34 @@ if (gen_code) { //authenticate user and pass to backend
 
     console.log("Code: " + gen_code);
 
-    $.post(`https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="${gen_code}"&redirect_uri=${redirect_uri_encoded}&client_id=${client_id}&client_secret=${client_secret}`,
-      {
-      },
-      function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
+    // $.post(`https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="${gen_code}"&redirect_uri=${redirect_uri_encoded}&client_id=${client_id}&client_secret=${client_secret}`,
+    //   {
+    //   },
+    //   function(data, status){
+    //     alert("Data: " + data + "\nStatus: " + status);
+    // });
+
+    $.ajax({
+    url: 'https://www.linkedin.com/oauth/v2/accessToken',
+    type: 'post',
+    data: {
+        grant_type: 'authorization_code',
+        code: gen_code,
+        redirect_uri: 'https://kxl4126.github.io',
+        client_id: '860zh5czatlpnt',
+        client_secret: 'KoYtnFvlSAHaSNWO',
+    },
+    headers: {
+        'Content-Type': 'x-www-form-urlencoded'
+    },
+    dataType: 'json',
+    success: function (data) {
+        console.log(data);
+    },
+})
+        .done((data) => {
+            console.log(data);
+        });
 
 }
 
