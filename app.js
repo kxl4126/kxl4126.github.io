@@ -91,6 +91,7 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
     });
 
 var mostRecentUsers = [];
+const PEOPLE_PER_PAGE = 50;
 var numPages = -1;
 
 function createCards() {
@@ -133,11 +134,13 @@ function createCards() {
 $.post("https://talent-backend.herokuapp.com/user", function(data, status){
     // alert("Data: " + data["schools"] + "\nStatus: " + status);
     mostRecentUsers = data['users'];
-    numPages = data['count'];
+    numPages = Math.ceil(data['count']/PEOPLE_PER_PAGE);
+    console.log(numPages)
     console.log(mostRecentUsers);
 })
     .done(() => {
         createCards();
+        renderPagination();
     });
 
 var searchFields = document.getElementsByClassName("search-input");
@@ -169,9 +172,247 @@ $('.search-input').change(() => {
         function(data, status) {
             console.log(data);
             mostRecentUsers = data['users'];
-            numPages = data['count'];
+            numPages = Math.ceil(data['count']/25);
             console.log(mostRecentUsers);
             createCards();
+            renderPagination();
     }});
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// DEBOUNCE HELPER
+
+const debounce = (callback, time) => {
+    let timeout;
+
+    return function(...args) {
+        const fnCall = () => callback.apply(this, args);
+        clearTimeout(timeout);
+        timeout = setTimeout(fnCall, time);
+    };
+};
+
+
+/**
+ * Pagination
+ *
+ * @component
+ * @example
+ * {
+ *   data: {
+ *     page: 4,
+ *   },
+ *   template: `
+ *     <app-pagination :length="24" :total-visible="7" v-model="page">
+ *       <template #prev-icon>
+ *         <i class="fa fa-chevron-left"></i>
+ *       </template>
+ *       <template #next-icon>
+ *         <i class="fa fa-chevron-right"></i>
+ *       </template>
+ *     </app-pagination>
+ *   `,
+ * }
+ */
+const AppPagination = {
+    name: 'app-pagination',
+    props: {
+        // v-model value
+        value: {
+            type: Number,
+            required: true,
+        },
+        length: {
+            type: Number,
+            default: 0,
+            validator: (val) => val % 1 === 0,
+        },
+        // when number of page buttons exceeds the parent container,
+        // it will truncate the buttons automatically
+        totalVisible: Number,
+        disabled: Boolean,
+    },
+
+    data: () => ({
+        maxButtons: 0,
+    }),
+
+    computed: {
+        isValueLast() {
+            return this.value >= this.length;
+        },
+
+        isValueFirst() {
+            return this.value <= 1;
+        },
+
+        items() {
+            const maxLength = this.totalVisible > this.maxButtons
+                ? this.maxButtons
+                : this.totalVisible || this.maxButtons;
+
+            if (this.length <= maxLength || maxLength < 1) {
+                return this.getRange(1, this.length);
+            }
+
+            const even = maxLength % 2 === 0 ? 1 : 0;
+            const left = Math.floor(maxLength / 2);
+            const right = this.length - left + 1 + even;
+
+            if (this.value > left && this.value < right) {
+                const start = this.value - left + 2;
+                const end = this.value + left - 2 - even;
+
+                return [1, '...', ...this.getRange(start, end), '...', this.length];
+            }
+            else if (this.value === left) {
+                const end = this.value + left - 1 - even;
+
+                return [...this.getRange(1, end), '...', this.length];
+            }
+            else if (this.value === right) {
+                const start = this.value - left + 1;
+
+                return [1, '...', ...this.getRange(start, this.length)];
+            }
+            else {
+                return [...this.getRange(1, left), '...', ...this.getRange(right, this.length)];
+            }
+        },
+    },
+
+    mounted() {
+        this.setMaxButtons();
+
+        window.addEventListener('resize', this.debouncedOnResize);
+    },
+
+    beforeDestory() {
+        window.removeEventListener('resize', this.debouncedOnResize);
+    },
+
+    methods: {
+        goNext(e) {
+            e.preventDefault();
+            this.$emit('input', this.value + 1);
+            this.$emit('next');
+        },
+
+        goPrevious(e) {
+            e.preventDefault();
+            this.$emit('input', this.value - 1);
+            this.$emit('previous');
+        },
+
+        getRange(from, to) {
+            const range = [];
+
+            from = from > 0 ? from : 1;
+
+            for (let i = from; i <= to; i++) {
+                range.push(i);
+            }
+
+            return range;
+        },
+
+        setMaxButtons() {
+            const containerWidth = this.$el && this.$el.parentElement
+                ? this.$el.parentElement.clientWidth
+                : window.innerWidth;
+
+            const navButton = this.$refs.navNext.getBoundingClientRect();
+
+            // const containerWidth = navButton.width * 2;
+
+            // width of the items considering navItem.height = item.width
+            const itemWidth = navButton.height;
+            const navItemsWidth = navButton.width * 2;
+
+            this.maxButtons = Math.floor(
+                (containerWidth - navItemsWidth) / itemWidth
+            );
+        },
+
+        debouncedOnResize: debounce(function() {
+            this.setMaxButtons();
+        }, 200),
+    },
+
+    template: `
+        <ul :class="['pagination', { disabled: disabled }]">
+            <li ref="navPrev">
+                <button
+                    :class="['pagination-navigation', { disabled: isValueFirst }]"
+                    v-on="isValueFirst ? {} : { click: goPrevious }"
+                >
+                    <slot name="prev-icon">$prev</slot>
+                </button>
+            </li>
+
+            <li v-for="(item, index) in items" :key="'paging_' + index"> 
+                <span
+                    v-if="isNaN(Number(item))"
+                    class="pagination-more"
+                >{{ item }}</span>
+
+                <button
+                    v-else
+                    type="button"
+                    :class="['pagination-item', { active: item === value }]"
+                    @click="$emit('input', item)"
+                >{{ item }}</button>
+            </li>
+
+            <li ref="navNext">
+                <button
+                    type="button"
+                    :class="['pagination-navigation', { disabled: isValueLast }]"
+                    v-on="isValueLast ? {} : { click: goNext }"
+                >
+                    <slot name="next-icon">$next</slot>
+                </button>
+            </li>
+        </ul>
+    `,
+};
+
+function renderPagination() {
+    new Vue({
+        el: '#app',
+        data: {
+            page: 1,
+            length: numPages,
+            totalVisible: 7,
+            containerWidth: numPages > 7 ? 700 : numPages * 100, // for resizing example
+        },
+        watch: {
+            containerWidth() {
+                // trigger pagination resize
+                this.$nextTick(() => {
+                    window.dispatchEvent(new Event('resize'));
+                });
+            },
+        },
+        components: {
+            AppPagination,
+        },
+    });
+}
