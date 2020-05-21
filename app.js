@@ -12,7 +12,7 @@ const urlParams = new URLSearchParams(queryString);
 const gen_code = urlParams.get('code');
 if (gen_code) { //authenticate user and pass to backend
 
-    console.log("Code: " + gen_code);
+    console.log("Code2: " + gen_code);
 
     // $.post(`https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="${gen_code}"&redirect_uri=${redirect_uri_encoded}&client_id=${client_id}&client_secret=${client_secret}`,
     //   {
