@@ -32,7 +32,7 @@ if (gen_code) { //authenticate user and pass to backend
         client_secret: 'KoYtnFvlSAHaSNWO',
     },
     headers: {
-        'Content-Type': 'x-www-form-urlencoded'
+        contentType: 'x-www-form-urlencoded'
     },
     dataType: 'json',
     success: function (data) {
