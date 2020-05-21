@@ -6,6 +6,8 @@ const redirect_uri_encoded = 'https%3A%2F%2Fkxl4126.github.io';
 const client_id = '860zh5czatlpnt';
 const client_secret = 'KoYtnFvlSAHaSNWO';
 
+const authUrl = "https://talent-backend.herokuapp.com/auth/linkedin"
+
 const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
