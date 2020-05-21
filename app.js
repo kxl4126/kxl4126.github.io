@@ -6,7 +6,24 @@ console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 const code = urlParams.get('code');
 if (code) { //authenticate user and pass to backend
+
     console.log("Code: " + code);
+
+    $.ajax({
+        url: 'https://www.linkedin.com/oauth/v2/accessToken',
+        type: 'post',
+        data: {
+            access_token: code
+        },
+        headers: {
+            "Content-Type": 'pplication/x-www-form-urlencoded'
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.info(data);
+        }
+    });
+
 }
 
 var criteria = {};
