@@ -208,17 +208,27 @@ $.post("https://talent-backend.herokuapp.com/user", function(data, status){
 var searchFields = document.getElementsByClassName("search-input");
 console.log(searchFields)
 const idToParam = {
-    'college-search': 'collegeName',
-    'company-search': 'lastCompanyName',
-    'category-search': 'category',
-    'location-search': 'location'
+    'colleges-select': 'collegeName',
+    'companies-select': 'lastCompanyName',
+    'categories-select': 'category',
+    'locations-select': 'location'
+}
+
+const defaultValues = {
+    'colleges-select': 'All colleges',
+    'companies-select': 'All companies',
+    'categories-select': 'All categories',
+    'locations-select': 'All locations'
 }
 
 $('.search-input').change(() => {
     console.log("CHANGE")
+    // console.log("FSAFAFA" + $(this));
     var paramDict = {};
     Array.from(searchFields).forEach((item, index) => {
-        if (item.value) {
+        // console.log("FSAFAFAF");
+        console.log(item.id);
+        if (item.value && item.value != defaultValues[item.id]) {
             paramDict[idToParam[item.id]] = item.value;
         }
     })
