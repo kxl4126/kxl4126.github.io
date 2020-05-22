@@ -184,7 +184,7 @@ option:active {
 .search-button:hover {
   background-color: HSLA(345, 100%, 60%, 1); }
 
-#linkedin-btn {
+.nav-btn {
   position: relative;
   box-sizing: border-box;
   height: 40px;

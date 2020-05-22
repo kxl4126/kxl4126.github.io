@@ -220,7 +220,7 @@ option:active {
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
 
-#linkedin-btn {
+.nav-btn {
   position: relative;
   box-sizing: border-box;
   height: 40px;
@@ -239,6 +239,10 @@ option:active {
   //margin-right: 10%;
   right: 2.5%;
   float:right;
+}
+
+#edit-btn {
+
 }
 
 #linkedin-btn:hover {

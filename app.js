@@ -84,6 +84,8 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
     // alert("Data: " + data["schools"] + "\nStatus: " + status);
     criteria['colleges'] = data["schools"];
     criteria['companies'] = data['companies'];
+    criteria['authenticated'] = data['authenticated'];
+    console.log(data);
 })
     .done(() => {
         var select = document.getElementById("colleges-select")
@@ -117,6 +119,18 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
                 option.value = item;
                 select.appendChild(option);
             })
+        }
+
+        //add linkedin/edit profile button
+
+        console.log(criteria['authenticated']);
+        if (criteria['authenticated']) {
+            var linkedinBtn = document.getElementById('linkedin-btn');
+            linkedinBtn.style.display = 'inline';
+        }
+        else {
+            var editButton = document.getElementById('edit-btn');
+            editButton.style.display = 'inline';
         }
         // var div = document.getElementById("college-div");
         // var select = document.getElementById("colleges-select")
