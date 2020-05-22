@@ -123,15 +123,15 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
 
         //add linkedin/edit profile button
 
-        console.log(criteria['authenticated']);
-        if (criteria['authenticated']) {
-            var linkedinBtn = document.getElementById('linkedin-btn');
-            linkedinBtn.style.display = 'inline';
-        }
-        else {
-            var editButton = document.getElementById('edit-btn');
-            editButton.style.display = 'inline';
-        }
+        // console.log(criteria['authenticated']);
+        // if (criteria['authenticated']) {
+        //     var linkedinBtn = document.getElementById('linkedin-btn');
+        //     linkedinBtn.style.display = 'inline';
+        // }
+        // else {
+        //     var editButton = document.getElementById('edit-btn');
+        //     editButton.style.display = 'inline';
+        // }
 
 
 
