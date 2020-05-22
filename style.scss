@@ -14,10 +14,16 @@ body {
   text-align: center;
 }
 
+#nav-bar {
+  width: 100%;
+  border-bottom: 0.5px solid rgb(175,175,175);
+  height: 3em;
+}
+
 #title-top {
   display: inline-block;
   font-family:helvetica,courier,arial;
-  font-size: 3em;
+  font-size: 2em;
   text-align: center;
   margin-top: 10%;
   width: 80%;
@@ -38,6 +44,7 @@ $threshold2: 1600px;
     //border-radius: 30px;
     width: 80%;
     text-align: left;
+  //font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;
 }
 
 @media (min-width: $threshold1) {
@@ -123,7 +130,7 @@ select {
   flex-grow: 2;
   flex-direction: column;
   //border-right: 1px solid rgba(10,10,10,.1);
-  padding: 1em;
+  padding: 0.5em;
 }
 
 #search-element-last {
@@ -217,19 +224,21 @@ option:active {
   position: relative;
   box-sizing: border-box;
   height: 40px;
-  width: 240px;
-  margin: 5em;
+  width: 20%;
+  //margin: 2em;
   background-color: #0B78B7;
   vertical-align: center;
-  left: 40%;
+  top: 25%;
   font: 500 14px/40px Roboto;
+  //font-size: 10vh;
   letter-spacing: 0.65px;
   color: white;
   padding-left: 58px;
   border-radius: 2px;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, .12);
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .24);
   overflow: hidden;
+  //margin-right: 10%;
+  right: 2.5%;
+  float:right;
 }
 
 #linkedin-btn:hover {
