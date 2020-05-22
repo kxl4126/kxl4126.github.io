@@ -47,6 +47,38 @@ if (gen_code) { //authenticate user and pass to backend
 
 }
 
+// var test = ['UT', 'Berkeley']
+// var div = document.getElementById("college-div");
+//         var select = document.getElementById("colleges-select")
+//         if (select) {
+//             console.log("REMOVED");
+//             console.log(div.removeChild(select));
+//         }
+//         if (true) {
+//             var newSelect = document.createElement('span');
+//             newSelect.className = 'input-dropdown';
+//             newSelect.id = 'colleges-select';
+//             test.forEach((item, index) => {
+//                 console.log(item);
+//                 var option = document.createElement("input");
+//                 option.type = 'radio';
+//                 // option.name = 'sortType';
+//                 option.text = item;
+//                 option.value = item;
+//                 option.className = 'criteria-option';
+//                 option.id = item;
+//                 newSelect.appendChild(option);
+//                 var label = document.createElement('label');
+//                 label.htmlFor = item;
+//                 label.innerText = item;
+//                 newSelect.append(label);
+//
+//             })
+//             div.appendChild(newSelect);
+//             console.log(newSelect);
+//             $('college-div').hide().show(0);
+//         }
+
 var criteria = {};
 $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, status){
     // alert("Data: " + data["schools"] + "\nStatus: " + status);
@@ -54,7 +86,6 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
     criteria['companies'] = data['companies'];
 })
     .done(() => {
-        console.log(criteria['colleges']);
         var select = document.getElementById("colleges-select")
 
         if (criteria['colleges']) {
@@ -77,7 +108,7 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
             })
         }
 
-        select = document.getElementById("companies-select")
+        select = document.getElementById("locations-select")
 
         if (criteria['locations']) {
             criteria['locations'].forEach((item, index) => {
@@ -87,6 +118,37 @@ $.get("https://talent-backend.herokuapp.com/user/criteria", function(data, statu
                 select.appendChild(option);
             })
         }
+        // var div = document.getElementById("college-div");
+        // var select = document.getElementById("colleges-select")
+        // if (select) {
+        //     console.log("REMOVED");
+        //     div.removeChild(select);
+        // }
+        // if (criteria['colleges']) {
+        //     var newSelect = document.createElement('span');
+        //     newSelect.className = 'input-dropdown';
+        //     newSelect.id = 'colleges-select';
+        //     criteria['colleges'].forEach((item, index) => {
+        //         console.log(item);
+        //         var option = document.createElement("input");
+        //         option.type = 'radio';
+        //         // option.name = 'sortType';
+        //         option.text = item;
+        //         option.value = item;
+        //         option.className = 'criteria-option';
+        //         option.id = item;
+        //         newSelect.appendChild(option);
+        //         var label = document.createElement('label');
+        //         label.htmlFor = item;
+        //         label.innerText = item;
+        //         newSelect.append(label);
+        //
+        //     })
+        //     div.appendChild(newSelect);
+        //     console.log(newSelect);
+        // }
+        // console.log(document.getElementsByClassName("criteria-option"));
+        // console.log(div)
 
     });
 
@@ -160,7 +222,6 @@ $('.search-input').change(() => {
             paramDict[idToParam[item.id]] = item.value;
         }
     })
-    // paramDict['collegeName'] = 'Stanford';
     console.log(paramDict);
     $.ajax('https://talent-backend.herokuapp.com/user',
         {
@@ -180,7 +241,44 @@ $('.search-input').change(() => {
 });
 
 
+$(".pagination-item").click(() => {
 
+    var paramDict = {};
+    Array.from(searchFields).forEach((item, index) => {
+        if (item.value) {
+            paramDict[idToParam[item.id]] = item.value;
+        }
+    })
+    paramDict['skip'] = ($(this).val() - 1) * PEOPLE_PER_PAGE;
+    $.ajax('https://talent-backend.herokuapp.com/user',
+        {
+            type: 'POST',
+            data: JSON.stringify(paramDict),
+            contentType: 'application/json',
+            success:
+    // $.get('https://talent-backend.herokuapp.com/user', paramDict,
+        function(data, status) {
+            console.log(data);
+            mostRecentUsers = data['users'];
+            numPages = Math.ceil(data['count']/25);
+            console.log(mostRecentUsers);
+            createCards();
+            renderPagination();
+    }});
+
+
+});
+
+
+$('.input-dropdown').click(function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $(this).toggleClass('expanded');
+  $('#'+$(e.target).attr('for')).prop('checked',true);
+});
+$(document).click(function() {
+  $('.input-dropdown').removeClass('expanded');
+});
 
 
 
@@ -264,6 +362,7 @@ const AppPagination = {
         },
 
         items() {
+            console.log("mostrecentusers length: " + mostRecentUsers.length);
             const maxLength = this.totalVisible > this.maxButtons
                 ? this.maxButtons
                 : this.totalVisible || this.maxButtons;
@@ -357,7 +456,7 @@ const AppPagination = {
     },
 
     template: `
-        <ul :class="['pagination', { disabled: disabled }]">
+        <ul :class="['pagination', { disabled: disabled }]" id="pagination-list">
             <li ref="navPrev">
                 <button
                     :class="['pagination-navigation', { disabled: isValueFirst }]"
@@ -394,12 +493,38 @@ const AppPagination = {
     `,
 };
 
+// new Vue({
+//         el: '#app',
+//         data: {
+//             page: 1,
+//             length: 20,
+//             totalVisible: 7,
+//             containerWidth: numPages > 7 ? 700 : numPages * 100, // for resizing example
+//         },
+//         watch: {
+//             containerWidth() {
+//                 // trigger pagination resize
+//                 this.$nextTick(() => {
+//                     window.dispatchEvent(new Event('resize'));
+//                 });
+//             },
+//         },
+//         components: {
+//             AppPagination,
+//         },
+//     });
+
 function renderPagination() {
+    // var elem = document.querySelector('#pagination-list');
+    // if (elem) {
+    //     elem.parentNode.removeChild(elem);
+    // }
+    // this.$forceUpdate();
     new Vue({
         el: '#app',
         data: {
             page: 1,
-            length: numPages,
+            length: mostRecentUsers.length,
             totalVisible: 7,
             containerWidth: numPages > 7 ? 700 : numPages * 100, // for resizing example
         },
