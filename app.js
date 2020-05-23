@@ -19,7 +19,7 @@ var paginationItems;
 
 $.ajax({url: "https://talent-backend.herokuapp.com/user/criteria",
         type: "GET",
-        contentType: 'application/json',
+        // contentType: 'application/json',
         // xhrFields: {
         //      withCredentials: true
         // },
@@ -124,25 +124,25 @@ function createCards() {
                 var card = document.createElement("div");
                 card.setAttribute("class", "card");
 
-                var name = document.createElement("p");
+                var name = document.createElement("div");
                 name.innerHTML = item["firstName"] + " " + item["lastName"];
                 name.setAttribute("class", "employee-names");
                 card.appendChild(name);
 
-                var email = document.createElement("p");
+                var email = document.createElement("div");
                 email.innerHTML = "Email" + ": " + item["email"];
                 email.setAttribute("class", "employee-email");
                 card.appendChild(email);
 
                 if (item['college']) {
-                    var education = document.createElement("p");
+                    var education = document.createElement("div");
                     education.innerHTML = item["college"]['name'] + ", " + item["college"]['degree'];
                     education.setAttribute("class", "employee-education");
                     card.appendChild(education);
                 }
 
                 if (item['lastJob']) {
-                    var prevJob = document.createElement("p");
+                    var prevJob = document.createElement("div");
                     prevJob.innerHTML = item["lastJob"]['company'] + ", " + item["lastJob"]['position'];
                     prevJob.setAttribute("class", "employee-prev-jobs");
                     card.appendChild(prevJob);
