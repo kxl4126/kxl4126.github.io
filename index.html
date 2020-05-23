@@ -7,6 +7,7 @@
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
       <link rel="stylesheet" type="text/css" href="style.css">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -36,6 +37,8 @@
         <h1>Who do you want to meet?</h1>
   </div>
 
+<!--  <a class = 'test-link'>TEST LINK</a>-->
+<!--  <a class = 'test-link'>TEST LINK 2</a>-->
 
   <form action="" method="get">
   <div id="product-search">
@@ -67,6 +70,7 @@
 <!--        <input class="search-input" id = "category-search" type="text" placeholder="Position" name="query">-->
           <div class="select">
           <select class="search-input" id="categories-select">
+              <optgroup>
             <option selected class="search-label-option">All categories</option>
               <option value="Accounting / Auditing">Accounting / Auditing</option>
                 <option value="Administrative">Administrative</option>
@@ -106,6 +110,7 @@
                 <option value="Supply Chain">Supply Chain</option>
                 <option value="Training">Training</option>
                 <option value="Writing / Editing">Writing / Editing</option>
+                  </optgroup>
           </select>
         </div>
       </div>
@@ -132,29 +137,31 @@
 
 <!--    <div id = "search-bar-test"></div>-->
 
-    <div id="app">
-    <div class="container" :style="{ 'max-width': containerWidth + 'px' }">
+<!--    <div id="app">-->
+<!--    <div class="container" :style="{ 'max-width': containerWidth + 'px' }">-->
 
 
-        <div class="stage-container">
+<!--        <div class="stage-container">-->
 
-            <app-pagination
-                    id = "pagination"
-                v-model="page"
-                :length="length"
-                :total-visible="totalVisible"
-            >
-                <template #prev-icon>
-                    <i class="fa fa-chevron-left"></i>
-                </template>
-                <template #next-icon>
-                    <i class="fa fa-chevron-right"></i>
-                </template>
-            </app-pagination>
+<!--            <app-pagination-->
+<!--                    id = "pagination"-->
+<!--                v-model="page"-->
+<!--                :length="length"-->
+<!--                :total-visible="totalVisible"-->
+<!--            >-->
+<!--                <template #prev-icon>-->
+<!--                    <i class="fa fa-chevron-left"></i>-->
+<!--                </template>-->
+<!--                <template #next-icon>-->
+<!--                    <i class="fa fa-chevron-right"></i>-->
+<!--                </template>-->
+<!--            </app-pagination>-->
 
-        </div>
-    </div>
-</div>
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+  <div id="pagination"></div>
 
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <!--    <script type="text/babel" src="src/search-bar.js"></script>-->

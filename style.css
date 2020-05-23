@@ -5,7 +5,7 @@
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100;
   src: local("Roboto Regular"), local("Roboto-Regular"), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu72xKKTU1Kvnz.woff2) format("woff2");
   unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
 body {
@@ -35,8 +35,12 @@ body {
   margin: 0 auto;
   cursor: pointer;
   width: 80%;
-  text-align: left; }
+  text-align: left;
+  font-family: Helvetica, Arial; }
 
+@media (max-width: 800px) {
+  #product-search {
+    grid-template-columns: repeat(1, 1fr); } }
 @media (min-width: 800px) {
   #product-search {
     grid-template-columns: repeat(2, 1fr); } }
@@ -48,7 +52,6 @@ body {
   min-height: 95vh;
   margin: 0;
   padding: 0;
-  border-bottom: 5vh solid #3694d7;
   font-family: "Myriad Pro","Arial",sans;
   font-size: 24px; }
 
@@ -80,13 +83,15 @@ select::-ms-expand {
   overflow: hidden;
   border-radius: .25em;
   border-color: black;
-  border: 1.5px solid black; }
+  border: 1px solid black; }
 
 select {
   flex: 1;
   padding: 0 1.5em;
   color: black;
   cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
   font-size: 0.75em; }
 
 /* Arrow */
@@ -130,11 +135,6 @@ select {
   font-size: 1.2em;
   line-height: 1.2em;
   margin-top: 5px; }
-
-option:active {
-  color: red;
-  font-weight: bold;
-  font-size: 100px; }
 
 .card {
   background-color: dodgerblue;
@@ -227,100 +227,31 @@ option:active {
   vertical-align: middle;
   margin-left: 4px; }
 
-body {
-  font-family: 'Source Sans Pro', sans-serif; }
+a:hover {
+  cursor: pointer; }
 
-.pagination-item,
-.pagination-navigation,
-.pagination-more {
-  height: 2.2rem;
-  width: 2.2rem;
-  margin: .3rem;
-  font-size: 15px;
-  color: #9ca4c1;
-  font-weight: 700; }
-
-.pagination-item,
-.pagination-navigation {
-  background-color: white;
-  border-radius: 4px;
-  transition-property: opacity, color, background-color;
-  transition-duration: 160ms;
-  transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1); }
-
-.pagination-item {
-  padding: 0 5px; }
-  .pagination-item.active {
-    color: white;
-    background-color: #7d6ee7; }
-  .pagination-item:hover, .pagination-item:focus {
-    background-color: #f7f7f7; }
-    .pagination-item:hover.active, .pagination-item:focus.active {
-      background-color: #8d80ea; }
-  .pagination-item:active {
-    background-color: #ededed; }
-    .pagination-item:active.active {
-      background-color: #a095ee; }
-
-.pagination-navigation {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-decoration: none; }
-  .pagination-navigation.disabled {
-    opacity: .6;
-    cursor: default; }
-  .pagination-navigation:hover:not(.disabled), .pagination-navigation:focus:not(.disabled) {
-    background-color: #f7f7f7; }
-  .pagination-navigation:active:not(.disabled) {
-    background-color: #ededed; }
-
-.pagination-more {
-  display: inline-flex;
-  align-items: flex-end;
-  justify-content: center; }
-
-.pagination {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  width: 100%;
-  margin: 0;
-  padding-left: 0;
-  list-style-type: none; }
-  .pagination > li {
-    align-items: center;
-    display: flex; }
-  .pagination button {
-    border: 0;
-    outline: none;
-    cursor: pointer; }
-  .pagination.disabled {
-    pointer-events: none;
-    opacity: .6; }
-
-.container {
-  margin: 0 auto;
-  padding: 0 1rem;
-  padding-bottom: 50px; }
-
-.controls {
+#pagination {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 40px 0; }
-  .controls input {
-    width: 60px;
-    margin-left: .3rem;
-    margin-right: 1.5rem; }
+  justify-content: center;
+  flex-direction: column; }
 
-.stage-container {
-  padding: 10px 0;
-  background-color: white;
-  border-radius: 6px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  font-family: Roboto, Helvetica, Arial;
+  font-weight: 100; }
+  ul li {
+    color: #323232;
+    display: flex; }
+    ul li a {
+      background-color: white;
+      padding: 5px 10px;
+      border-right: 0; }
+  ul li.active a {
+    background-color: black;
+    color: white; }
 
 /*# sourceMappingURL=style.css.map */
