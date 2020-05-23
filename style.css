@@ -38,13 +38,13 @@ body {
   text-align: left;
   font-family: Helvetica, Arial; }
 
-@media (max-width: 800px) {
+@media (max-width: 1300px) {
   #product-search {
     grid-template-columns: repeat(1, 1fr); } }
-@media (min-width: 800px) {
+@media (min-width: 1300px) {
   #product-search {
     grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1600px) {
+@media (min-width: 1700px) {
   #product-search {
     grid-template-columns: repeat(4, 1fr); } }
 body {
@@ -149,10 +149,10 @@ select {
   display: grid;
   grid-gap: 1rem; }
 
-@media (min-width: 800px) {
+@media (min-width: 1300px) {
   #cards {
     grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1600px) {
+@media (min-width: 1700px) {
   #cards {
     grid-template-columns: repeat(3, 1fr); } }
 .search-label, .search-input {
