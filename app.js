@@ -80,97 +80,98 @@ if (gen_code) { //authenticate user and pass to backend
 //         }
 
 var criteria = {};
-$.get("https://talent-backend.herokuapp.com/user/criteria", function(data, status){
-    // alert("Data: " + data["schools"] + "\nStatus: " + status);
-    criteria['colleges'] = data["schools"];
-    criteria['companies'] = data['companies'];
-    criteria['authenticated'] = data['authenticated'];
-    console.log(data);
-})
-    .done(() => {
-        var select = document.getElementById("colleges-select")
+$.ajax({url: "https://talent-backend.herokuapp.com/user/criteria",
+        type: "GET",
+        contentType: 'application/json',
+        xhrFields: {
+             withCredentials: true
+        },
+        success: function(data, status) {
+            // alert("Data: " + data["schools"] + "\nStatus: " + status);
+            criteria['colleges'] = data["schools"];
+            criteria['companies'] = data['companies'];
+            criteria['authenticated'] = data['authenticated'];
+            console.log(data);
+            // }})
+            // .done(() => {
+            var select = document.getElementById("colleges-select")
 
-        if (criteria['colleges']) {
-            criteria['colleges'].forEach((item, index) => {
-                var option = document.createElement("option");
-                option.text = item;
-                option.value = item;
-                select.appendChild(option);
-            })
-        }
+            if (criteria['colleges']) {
+                criteria['colleges'].forEach((item, index) => {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    select.appendChild(option);
+                })
+            }
 
-        select = document.getElementById("companies-select")
+            select = document.getElementById("companies-select")
 
-        if (criteria['companies']) {
-            criteria['companies'].forEach((item, index) => {
-                var option = document.createElement("option");
-                option.text = item;
-                option.value = item;
-                select.appendChild(option);
-            })
-        }
+            if (criteria['companies']) {
+                criteria['companies'].forEach((item, index) => {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    select.appendChild(option);
+                })
+            }
 
-        select = document.getElementById("locations-select")
+            select = document.getElementById("locations-select")
 
-        if (criteria['locations']) {
-            criteria['locations'].forEach((item, index) => {
-                var option = document.createElement("option");
-                option.text = item;
-                option.value = item;
-                select.appendChild(option);
-            })
-        }
+            if (criteria['locations']) {
+                criteria['locations'].forEach((item, index) => {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    select.appendChild(option);
+                })
+            }
 
-        //add linkedin/edit profile button
+            //add linkedin/edit profile button
 
-        console.log('authenticated:' + criteria['authenticated']);
-        if (criteria['authenticated']) {
-            var linkedinBtn = document.getElementById('linkedin-btn');
-            linkedinBtn.style.display = 'inline';
-        }
-        else {
-            var editButton = document.getElementById('edit-btn');
-            editButton.style.display = 'inline';
-        }
-
+            console.log('authenticated:' + criteria['authenticated']);
+            if (criteria['authenticated']) {
+                var linkedinBtn = document.getElementById('linkedin-btn');
+                linkedinBtn.style.display = 'inline';
+            } else {
+                var editButton = document.getElementById('edit-btn');
+                editButton.style.display = 'inline';
+            }
 
 
+            // var div = document.getElementById("college-div");
+            // var select = document.getElementById("colleges-select")
+            // if (select) {
+            //     console.log("REMOVED");
+            //     div.removeChild(select);
+            // }
+            // if (criteria['colleges']) {
+            //     var newSelect = document.createElement('span');
+            //     newSelect.className = 'input-dropdown';
+            //     newSelect.id = 'colleges-select';
+            //     criteria['colleges'].forEach((item, index) => {
+            //         console.log(item);
+            //         var option = document.createElement("input");
+            //         option.type = 'radio';
+            //         // option.name = 'sortType';
+            //         option.text = item;
+            //         option.value = item;
+            //         option.className = 'criteria-option';
+            //         option.id = item;
+            //         newSelect.appendChild(option);
+            //         var label = document.createElement('label');
+            //         label.htmlFor = item;
+            //         label.innerText = item;
+            //         newSelect.append(label);
+            //
+            //     })
+            //     div.appendChild(newSelect);
+            //     console.log(newSelect);
+            // }
+            // console.log(document.getElementsByClassName("criteria-option"));
+            // console.log(div)
 
-
-
-        // var div = document.getElementById("college-div");
-        // var select = document.getElementById("colleges-select")
-        // if (select) {
-        //     console.log("REMOVED");
-        //     div.removeChild(select);
-        // }
-        // if (criteria['colleges']) {
-        //     var newSelect = document.createElement('span');
-        //     newSelect.className = 'input-dropdown';
-        //     newSelect.id = 'colleges-select';
-        //     criteria['colleges'].forEach((item, index) => {
-        //         console.log(item);
-        //         var option = document.createElement("input");
-        //         option.type = 'radio';
-        //         // option.name = 'sortType';
-        //         option.text = item;
-        //         option.value = item;
-        //         option.className = 'criteria-option';
-        //         option.id = item;
-        //         newSelect.appendChild(option);
-        //         var label = document.createElement('label');
-        //         label.htmlFor = item;
-        //         label.innerText = item;
-        //         newSelect.append(label);
-        //
-        //     })
-        //     div.appendChild(newSelect);
-        //     console.log(newSelect);
-        // }
-        // console.log(document.getElementsByClassName("criteria-option"));
-        // console.log(div)
-
-    });
+        }});
 
 var mostRecentUsers = [];
 const PEOPLE_PER_PAGE = 50;
