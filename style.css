@@ -20,12 +20,12 @@ body {
 
 #title-top {
   display: inline-block;
-  font-family: helvetica,courier,arial;
   font-size: 2em;
   text-align: center;
   margin-top: 10%;
   width: 80%;
   padding: 0;
+  font-family: helvetica,courier,arial;
   color: #323232; }
 
 #product-search {
@@ -38,12 +38,6 @@ body {
   text-align: left;
   font-family: Helvetica, Arial; }
 
-@media (min-width: 1300px) {
-  #product-search {
-    grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1700px) {
-  #product-search {
-    grid-template-columns: repeat(4, 1fr); } }
 body {
   text-align: center;
   min-height: 95vh;
@@ -117,7 +111,7 @@ select {
   padding: 0.5em; }
 
 #search-element-last {
-  border-right: 1px; }
+  border-right: 0; }
 
 .search-label {
   font-weight: 700; }
@@ -134,25 +128,33 @@ select {
   line-height: 1.2em;
   margin-top: 5px; }
 
+#college-div {
+  padding-left: 0; }
+
+#locations-div {
+  padding-right: 0; }
+
 .card {
-  background-color: dodgerblue;
-  color: white;
+  background-color: white;
+  color: black;
   padding: 1rem;
   /*height: 4rem;*/
-  border-radius: 0.3em; }
+  border-radius: 0.3em;
+  text-align: left;
+  border: 1px solid black;
+  font-family: helvetica,courier,arial;
+  color: #323232; }
+
+.employee-names {
+  font-weight: 900;
+  font-size: 2em; }
 
 #cards {
-  max-width: 80%;
+  width: 80%;
   margin: 5em auto;
   display: grid;
   grid-gap: 1rem; }
 
-@media (min-width: 1300px) {
-  #cards {
-    grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1700px) {
-  #cards {
-    grid-template-columns: repeat(3, 1fr); } }
 .search-label, .search-input {
   padding: 0 0.5em; }
 
@@ -252,8 +254,35 @@ ul {
     background-color: black;
     color: white; }
 
+@media (min-width: 1300px) {
+  #product-search {
+    grid-template-columns: repeat(2, 1fr); }
+
+  #cards {
+    grid-template-columns: repeat(2, 1fr); }
+
+  #categories-search {
+    padding-left: 0; }
+
+  #companies-search {
+    padding-right: 0; }
+
+  #search-element-last {
+    padding-right: 0; } }
+@media (min-width: 1700px) {
+  #product-search {
+    grid-template-columns: repeat(4, 1fr); }
+
+  #cards {
+    grid-template-columns: repeat(3, 1fr); }
+
+  .search-element {
+    padding: 0.5em !important; } }
 @media (max-width: 1300px) {
   #product-search {
+    grid-template-columns: repeat(1, 1fr); }
+
+  #cards {
     grid-template-columns: repeat(1, 1fr); }
 
   .select {
@@ -261,6 +290,10 @@ ul {
     vertical-align: center; }
 
   .search-input {
-    font-size: 40px; } }
+    font-size: 40px; }
+
+  .search-element {
+    padding-left: 0;
+    padding-right: 0; } }
 
 /*# sourceMappingURL=style.css.map */
