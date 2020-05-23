@@ -38,9 +38,6 @@ body {
   text-align: left;
   font-family: Helvetica, Arial; }
 
-@media (max-width: 1300px) {
-  #product-search {
-    grid-template-columns: repeat(1, 1fr); } }
 @media (min-width: 1300px) {
   #product-search {
     grid-template-columns: repeat(2, 1fr); } }
@@ -106,6 +103,7 @@ select {
   pointer-events: none;
   -webkit-transition: .25s all ease;
   -o-transition: .25s all ease;
+  vertical-align: center;
   transition: .25s all ease; }
 
 /* Transition */
@@ -253,5 +251,16 @@ ul {
   ul li.active a {
     background-color: black;
     color: white; }
+
+@media (max-width: 1300px) {
+  #product-search {
+    grid-template-columns: repeat(1, 1fr); }
+
+  .select {
+    height: 5em;
+    vertical-align: center; }
+
+  .search-input {
+    font-size: 40px; } }
 
 /*# sourceMappingURL=style.css.map */
