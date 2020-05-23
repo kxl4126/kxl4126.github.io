@@ -196,7 +196,8 @@ $('.search-input').change(() => {
         {
             type: 'POST',
             data: JSON.stringify(paramDict),
-            contentType: 'json',
+            // dataType: 'json',
+            contentType: 'application/json',
             success:
     // $.get('https://talent-backend.herokuapp.com/user', paramDict,
         function(data, status) {
@@ -275,7 +276,8 @@ function renderPagination() {
         {
             type: 'POST',
             data: JSON.stringify(paramDict),
-            contentType: 'json',
+            // dataType: 'json',
+            contentType: 'application/json',
             success:
             // $.get('https://talent-backend.herokuapp.com/user', paramDict,
                 function (data, status) {
