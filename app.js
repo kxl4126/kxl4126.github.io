@@ -11,7 +11,9 @@ const authUrl = "https://talent-backend.herokuapp.com/auth/linkedin"
 const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
-const gen_code = urlParams.get('code');
+const gen_code = urlParams.get('_ijt');
+console.log("firstName: " + urlParams);
+console.log("color: " + urlParams.get('color'));
 
 var criteria = {};
 

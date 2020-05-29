@@ -3,8 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src = "form.js"></script>
+    <link rel="stylesheet" type="text/css" href="form.css">
 </head>
 <body>
-    FAKFJLAHKLFAH
+    <form autocomplete="off">
+<!--      <div class="autocomplete" style="width:300px;">-->
+<!--        <input id="myInput" type="text" name="myCountry" placeholder="Country">-->
+<!--      </div>-->
+     <div class="form-group">
+        <span>Last Job: </span>
+        <input class="form-field" id = "last-job-company" type="text" placeholder="Company Name">
+         <input class="form-field" id = "last-job-position" type="text" placeholder="Position">
+         <input class="form-field" id = "last-job-duration" type = "text" placeholder="Years">
+    </div>
+
+    <div class="form-group">
+        <span>College: </span>
+<!--        <input class="form-field" id = "college" type="text" placeholder="College">-->
+        <div class="select" >
+          <select class="search-input" id = "college">
+            <option selected class="search-label-option">College</option>
+          </select>
+        </div>
+        <div class="select" >
+          <select class="search-input" id = "college-degree">
+            <option selected class="search-label-option">Degree</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <span>Description: </span>
+        <input class="form-field" type="text" maxlength="140" placeholder="Write some stuff about you." id = "description">
+    </div>
+
+    <div class="form-group">
+        <span>Location: </span>
+        <div class="select" >
+          <select class="search-input" id = "location-state">
+            <option selected class="search-label-option">State</option>
+          </select>
+        </div>
+        <div class="select" >
+          <select class="search-input" id = "location-city">
+            <option selected class="search-label-option">Select a state first</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <span>Links: </span>
+        <input class="form-field" type="text" placeholder="GitHub" id = 'github'>
+        <input class="form-field" type="text" placeholder="LinkedIn" id = 'linkedin'>
+        <input class="form-field" type="text" placeholder="Website" id = 'website'>
+        <input class="form-field" type="text" placeholder="Resume" id = 'resume'>
+    </div>
+
+    <div class="form-group">
+        <span>Desired Position: </span>
+        <input class="form-field" type="text" placeholder="Position" id = 'searching-position'>
+        <div class="select" >
+        <select class="search-input" id = "searching-duration">
+            <option selected class="search-label-option">Job type </option>
+          </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <span>Category: </span>
+        <div class="select" >
+          <select class="search-input" id = 'form-category'>
+            <option selected class="search-label-option">Category</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+<!--        <span id = "relocation-span">Open to Relocation: </span>-->
+        <div class="toggle">
+            <label class="toggle__label" for="toggle-element">Not open to relocation</label>
+            <button
+              class="toggle__element"
+              id="toggle-element"
+              aria-pressed="false"
+              onclick="fun(event)"
+            />
+        </div>
+
+
+    </div>
+
+        <div class = "form-group" id = "submit-div">
+
+            <div id = "save-button" onclick="submitForm()"><label >Save</label></div>
+
+        </div>
+
+    </form>
+
+
+
+
+
+
+
 </body>
 </html>
