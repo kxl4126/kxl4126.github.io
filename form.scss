@@ -436,66 +436,66 @@ $threshold2: 1700px;
 
 
 
-@media (max-width: $threshold1) {
-  :root {
-   --bg-thumb: #ffffff;
-   --color-bg: hsl(0, 0%, 95%);
-   --color-shadow: hsla(0, 0%, 0%, 0.25);
-   --color-toggle-off-bg: hsl(206, 92%, 46%);
-   --color-toggle-on-bg: hsl(0, 0%, 80%);
-   --color-smile-bg: black;
-   --color-smile-fg: black;
-   --font-label: 'Quicksand', sans-serif;
-   --metric-toggle-thumb-size: 8em;
-   --metric-toggle-thumb-space: 0.35rem;
-   --transition-smooth: 350ms;
-}
-  form {
-    //width: 50em;
-    font-size: 1em;
-  }
-  .form-group {
-    min-width: 60em;
-    min-height: 4em;
-    font-size: 2em;
-  }
-  .form-field {
-  font-size: 2em;
-  }
-  .form-group span {
-    padding-top: 1.4em;
-  }
-  .select {
-    font-size: 2em;
-  }
-  .toggle button::before,
-  .toggle button::after {
-   content: '';
-   position: absolute;
-   border-radius: var(--metric-toggle-thumb-size);
-   height: var(--metric-toggle-thumb-size);
-   transition: all var(--transition-smooth) ease;
-}
-  .toggle button::after {
-   width: var(--metric-toggle-thumb-size);
-   border: calc(var(--metric-toggle-thumb-space)) solid
-      var(--color-toggle-on-bg);
-   background: var(--bg-thumb);
-}
-.toggle label {
-   //text-transform: uppercase;
-   //font-family: var(--font-label);
-   font-size: 2em;
-   width: 60%;
-  margin-right: 0;
-  margin-left: 5%;
-   //display: flex;
-  margin-top: 1%;
-  color: var(--input-color);
-}
-  #save-button {
-  font-size: 2em;
-  //width: 50%;
-}
-}
+//@media (max-width: $threshold1) {
+//  :root {
+//   --bg-thumb: #ffffff;
+//   --color-bg: hsl(0, 0%, 95%);
+//   --color-shadow: hsla(0, 0%, 0%, 0.25);
+//   --color-toggle-off-bg: hsl(206, 92%, 46%);
+//   --color-toggle-on-bg: hsl(0, 0%, 80%);
+//   --color-smile-bg: black;
+//   --color-smile-fg: black;
+//   --font-label: 'Quicksand', sans-serif;
+//   --metric-toggle-thumb-size: 8em;
+//   --metric-toggle-thumb-space: 0.35rem;
+//   --transition-smooth: 350ms;
+//}
+//  form {
+//    //width: 50em;
+//    font-size: 1em;
+//  }
+//  .form-group {
+//    min-width: 60em;
+//    min-height: 4em;
+//    font-size: 2em;
+//  }
+//  .form-field {
+//  font-size: 2em;
+//  }
+//  .form-group span {
+//    padding-top: 1.4em;
+//  }
+//  .select {
+//    font-size: 2em;
+//  }
+//  .toggle button::before,
+//  .toggle button::after {
+//   content: '';
+//   position: absolute;
+//   border-radius: var(--metric-toggle-thumb-size);
+//   height: var(--metric-toggle-thumb-size);
+//   transition: all var(--transition-smooth) ease;
+//}
+//  .toggle button::after {
+//   width: var(--metric-toggle-thumb-size);
+//   border: calc(var(--metric-toggle-thumb-space)) solid
+//      var(--color-toggle-on-bg);
+//   background: var(--bg-thumb);
+//}
+//.toggle label {
+//   //text-transform: uppercase;
+//   //font-family: var(--font-label);
+//   font-size: 2em;
+//   width: 60%;
+//  margin-right: 0;
+//  margin-left: 5%;
+//   //display: flex;
+//  margin-top: 1%;
+//  color: var(--input-color);
+//}
+//  #save-button {
+//  font-size: 2em;
+//  //width: 50%;
+//}
+//}
 
