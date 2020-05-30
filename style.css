@@ -186,7 +186,9 @@ select {
 #cards {
   width: 80%;
   margin: 5em auto;
+  display: grid;
   grid-gap: 1rem;
+  column-count: 2;
   margin: 1.5em auto;
   max-width: 3000px;
   column-gap: 1.5em; }
