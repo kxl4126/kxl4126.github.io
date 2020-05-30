@@ -124,6 +124,7 @@ function renderForm () {
         // document.getElementById("save-button").click()
         document.getElementById("toggle-element").setAttribute('aria-pressed', 'true');
         document.querySelector('.toggle__label').innerHTML = 'Open to relocation';
+        document.querySelector('.toggle__label').style.color = '#275EFE'
         relocation = 'true'
     }
 }

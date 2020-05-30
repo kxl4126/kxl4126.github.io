@@ -115,11 +115,19 @@ $.ajax({url: "https://talent-backend.herokuapp.com/user/criteria",
 var mostRecentUsers = [];
 const PEOPLE_PER_PAGE = 1;
 var numPages = -1;
+var savedPeople = getCookie('savedPeople')
+if (!savedPeople) {
+    savedPeople = []
+}
+else {
+    savedPeople = JSON.parse(savedPeople)
+}
 const iconSources = {
     'GitHub' : 'https://cdn.iconscout.com/icon/free/png-512/github-153-675523.png',
     'LinkedIn' : 'https://image.flaticon.com/icons/png/512/61/61109.png',
     'Website': 'https://cdn4.iconfinder.com/data/icons/software-line/32/software-line-02-512.png',
     'Resume': 'https://static.thenounproject.com/png/202530-200.png',
+    'email': 'envelope.png',
 }
 
 function createCards() {
@@ -222,9 +230,16 @@ function createCards() {
 
 
                 var email = document.createElement("div");
-                email.innerHTML = "Email" + ": " + item["email"];
-                email.setAttribute("class", "employee-email");
-                card.appendChild(email);
+                var icon = document.createElement('img')
+                email.setAttribute('class', 'email')
+                icon.setAttribute("src", iconSources['email']);
+                icon.setAttribute("class", 'icons');
+                email.append(icon)
+
+                var emailText =  document.createElement("span");
+                emailText.innerHTML = item['email'];
+                email.appendChild(emailText);
+                card.appendChild(email)
 
                 var description = document.createElement("div");
                 description.innerHTML = item['description'];
@@ -232,10 +247,84 @@ function createCards() {
                 card.appendChild(description);
 
 
+                var bookmark = document.createElement("div");
+                var bookmarkImg = document.createElement('img')
+                var savedText =  document.createElement('span')
+                if (savedPeople.filter(person => person['_id'] == item['_id']).length == 0) {
+                    savedText.innerHTML = 'Save to list'
+                    bookmarkImg.setAttribute('src', 'bookmark.png')
+                    bookmark.style.backgroundColor = 'white'
+                    bookmark.style.color = 'black'
+                    bookmark.style.border = '0.1em solid black'
+                }
+                else {
+                    savedText.innerHTML = 'Saved'
+                    bookmarkImg.setAttribute('src', 'bookmark-white.png')
+                    bookmark.style.backgroundColor = 'black'
+                    bookmark.style.color = 'white'
+                    bookmark.style.border = '0.1em solid black'
+                }
+                bookmark.appendChild(bookmarkImg)
+                bookmark.appendChild(savedText)
+                bookmark.setAttribute('class', 'bookmark')
+                bookmark.style.borderRadius = '2em'
+                bookmark.id = index;
+                card.append(bookmark)
+
+                // $('.bookmark').click( function() {
+                //     console.log("BOOKMARK CLICKED")
+                //     if (savedPeople.filter(person => person['_id'] == item['_id']).length == 0) {
+                //         savedPeople.push(item)
+                //         savedText.innerHTML = 'Saved'
+                //         bookmarkImg.setAttribute('src', 'bookmark-white.png')
+                //         bookmark.style.backgroundColor = 'black'
+                //         bookmark.style.color = 'white'
+                //         bookmark.style.border = '0.1em solid black'
+                //     }
+                //     else {
+                //         savedPeople = savedPeople.filter(person => person['_id'] != item['_id'])
+                //         savedText.innerHTML = 'Save to list'
+                //         bookmarkImg.setAttribute('src', 'bookmark.png')
+                //         bookmark.style.backgroundColor = 'white'
+                //         bookmark.style.color = 'black'
+                //         bookmark.style.border = '0.1em solid black'
+                //     }
+                //     createCookie('savedPeople', JSON.stringify(savedPeople), 10000);
+                // })
+
+
 
                 cards.appendChild(card);
             })
         }
+        $('.bookmark').click( function() {
+                    console.log("BOOKMARK CLICKED")
+                    if ($(this).attr('id') > mostRecentUsers.length) {
+                        return false;
+                    }
+
+                    var item = mostRecentUsers[$(this).attr('id')]
+                    var bookmark = document.getElementById($(this).attr('id'))
+                    var savedText = document.getElementById($(this).attr('id')).getElementsByTagName('span')[0]
+                    var bookmarkImg = document.getElementById($(this).attr('id')).getElementsByTagName('img')[0]
+                    if (savedPeople.filter(person => person['_id'] == item['_id']).length == 0) {
+                        savedPeople.push(item)
+                        savedText.innerHTML = 'Saved'
+                        bookmarkImg.setAttribute('src', 'bookmark-white.png')
+                        bookmark.style.backgroundColor = 'black'
+                        bookmark.style.color = 'white'
+                        bookmark.style.border = '0.1em solid black'
+                    }
+                    else {
+                        savedPeople = savedPeople.filter(person => person['_id'] != item['_id'])
+                        savedText.innerHTML = 'Save to list'
+                        bookmarkImg.setAttribute('src', 'bookmark.png')
+                        bookmark.style.backgroundColor = 'white'
+                        bookmark.style.color = 'black'
+                        bookmark.style.border = '0.1em solid black'
+                    }
+                    createCookie('savedPeople', JSON.stringify(savedPeople), 10000);
+                })
 }
 
 $.post("https://talent-backend.herokuapp.com/user", function(data, status){
@@ -716,3 +805,35 @@ function createPagination(pages, page) {
 //         },
 //     });
 // }
+
+
+
+
+
+function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(c_name) {
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+    return "";
+}

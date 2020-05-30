@@ -137,14 +137,16 @@ select {
 .card {
   background-color: white;
   color: black;
-  padding: 1rem;
+  padding: 2em;
   /*height: 4rem;*/
   border-radius: 0.3em;
   text-align: left;
   border: 1px solid black;
   font-family: helvetica,courier,arial;
   color: #323232;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  max-width: 100%;
+  overflow: auto; }
 
 .card:hover {
   border: 3px solid black; }
@@ -169,13 +171,13 @@ select {
 .employee-relocation, .employee-category {
   color: #969696; }
 
-.employee-prev-jobs, .employee-searching-position, .employee-education, .employee-location, .employee-email {
+.employee-prev-jobs, .employee-searching-position, .employee-education, .employee-location {
   margin-top: 0.25em; }
 
 .employee-description {
   margin-top: 1em; }
 
-.GitHub-link, .LinkedIn-link, .Website-link, .Resume-link {
+.GitHub-link, .LinkedIn-link, .Website-link, .Resume-link, .email {
   margin-top: 0.5em; }
 
 .GitHub-link {
@@ -190,6 +192,32 @@ select {
   margin: 1.5em auto;
   max-width: 3000px;
   column-gap: 1.5em; }
+
+.bookmark {
+  margin-top: 1em;
+  margin-bottom: -1em;
+  text-align: center;
+  display: table;
+  width: 35%;
+  height: 2em;
+  padding: 0em;
+  font-size: 0.75em;
+  margin-left: 32.5%;
+  padding-left: 1em;
+  padding-right: 1em; }
+
+.bookmark img {
+  height: 1.5em;
+  width: 1.5em;
+  margin-top: 0.3em; }
+
+.bookmark span {
+  display: table-cell;
+  vertical-align: middle;
+  margin-right: 10em; }
+
+.bookmark:hover {
+  cursor: pointer; }
 
 .search-label, .search-input {
   padding: 0 0.5em; }
@@ -305,10 +333,10 @@ ul {
 
   .employee-names {
     font-weight: 900;
-    font-size: 1.7em; }
+    font-size: 2.3em; }
 
   .card {
-    font-size: 1.5em;
+    font-size: 1.7em;
     word-wrap: break-word; } }
 @media (min-width: 1300px) {
   #product-search {
