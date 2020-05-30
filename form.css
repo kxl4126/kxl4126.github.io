@@ -336,4 +336,15 @@ button:focus {
 #save-button, #save-button label {
   cursor: pointer; }
 
+@media (max-width: 1300px) {
+  form {
+    font-size: 1em; }
+
+  .form-group {
+    min-width: 60em;
+    min-height: 4em; }
+
+  .form-group span {
+    padding-top: 1.4em; } }
+
 /*# sourceMappingURL=form.css.map */

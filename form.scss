@@ -338,6 +338,7 @@ body {
   color: var(--input-color);
 }
 
+
 .toggle button {
    //top: calc(var(--metric-toggle-thumb-space) * 2);
    width: 0px;
@@ -424,3 +425,28 @@ button:focus {outline:0;}
 //  background-color: #275EFE;
 //  color: white;
 //}
+
+//label {
+//  font-size: 3000px;
+//}
+
+$threshold1: 1300px;
+$threshold2: 1700px;
+
+@media (max-width: $threshold1) {
+  form {
+    //width: 50em;
+    font-size: 1em;
+  }
+  .form-group {
+    min-width: 60em;
+    min-height: 4em;
+  }
+  .form-group span {
+    padding-top: 1.4em;
+  }
+  .form-field {
+    //width:1
+  }
+}
+
