@@ -174,10 +174,10 @@ select {
   font-family:helvetica,courier,arial;
   color: rgb(50,50,50);
 
-
-  display: inline-block;
-  margin: 0 0 1em;
-  width: 100%;
+  //max-width: 80%;
+  //display: inline-block;
+  //margin: 0 0 1em;
+  //width: 100%;
   word-wrap: break-word;
 }
 
@@ -358,139 +358,6 @@ body {
     //background-color: whitesmoke;
 }
 
-// COMPONENT
-//
-//.pagination-item,
-//.pagination-navigation,
-//.pagination-more {
-//    height: map-get($size, 'item');
-//    width: map-get($size, 'item');
-//    margin: .3rem;
-//    font-size: map-get($size, 'font');
-//    color: map-get($theme, 'foreground');
-//    font-weight: 700;
-//}
-//
-//.pagination-item,
-//.pagination-navigation {
-//    background-color: map-get($theme, 'background');
-//    border-radius: 4px;
-//    transition-property: opacity, color, background-color;
-//    transition-duration: 160ms;
-//    transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
-//}
-//
-//.pagination-item {
-//    padding: 0 5px;
-//
-//    &.active {
-//        color: map-get($theme, 'background');
-//        background-color: map-get($theme, 'primary');
-//    }
-//
-//    &:hover,
-//    &:focus {
-//        background-color: darken(map-get($theme, 'background'), 3%);
-//
-//        &.active {
-//            background-color: lighten(map-get($theme, 'primary'), 4%);
-//        }
-//    }
-//
-//    &:active {
-//        background-color: darken(map-get($theme, 'background'), 7%);
-//
-//        &.active {
-//            background-color: lighten(map-get($theme, 'primary'), 9%);
-//        }
-//    }
-//}
-//
-//.pagination-navigation {
-//    display: inline-flex;
-//    justify-content: center;
-//    align-items: center;
-//    margin-left: 10px;
-//    margin-right: 10px;
-//    text-decoration: none;
-//
-//    &.disabled {
-//        opacity: .6;
-//        cursor: default;
-//    }
-//
-//    &:hover:not(.disabled),
-//    &:focus:not(.disabled) {
-//        background-color: darken(map-get($theme, 'background'), 3%);
-//    }
-//
-//    &:active:not(.disabled) {
-//        background-color: darken(map-get($theme, 'background'), 7%);
-//    }
-//}
-//
-//.pagination-more {
-//    display: inline-flex;
-//    align-items: flex-end;
-//    justify-content: center;
-//}
-//
-//.pagination {
-//    display: inline-flex;
-//    align-items: center;
-//    justify-content: center;
-//    max-width: 100%;
-//    width: 100%;
-//    margin: 0;
-//    padding-left: 0;
-//    list-style-type: none;
-//
-//    > li {
-//        align-items: center;
-//        display: flex;
-//    }
-//
-//    button {
-//        border: 0;
-//        outline: none;
-//        cursor: pointer;
-//    }
-//
-//    &.disabled {
-//        pointer-events: none;
-//        opacity: .6;
-//    }
-//}
-//
-//
-//// LAYOUT
-//
-//.container {
-//    margin: 0 auto;
-//    padding: 0 1rem;
-//    padding-bottom: 50px;
-//}
-//
-//.controls {
-//    display: flex;
-//    justify-content: center;
-//    align-items: center;
-//    margin: 40px 0;
-//
-//    input {
-//        width: 60px;
-//        margin-left: .3rem;
-//        margin-right: 1.5rem;
-//    }
-//}
-//
-//.stage-container {
-//    padding: 10px 0;
-//    background-color: white;
-//    border-radius: 6px;
-//    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-//}
-
 $border-color: #3D315B;
 $background-color: #266DD3;
 $list-background-color: #444B6E;
@@ -518,18 +385,24 @@ ul {
     color: rgb(50,50,50);
     display: flex;
     font-size: 2em;
+    width:2em;
+    height:2em;
     a {
       background-color: white;
-      padding: 5px 10px;
+      //padding: 5px 10px;
       //border: 2px solid $border-color;
       border-right: 0;
       width: 100%;
+      padding: 0em;
+      padding-top: 0.3em;
     }
   }
 
   li.active a {
-    background-color: $active-list-background-color;
-    color: white;
+    background-color: white;
+    border: 0.1em solid black;
+    border-radius: 50%;
+    color: black;
   }
   li:first-child a {
     //border-radius: $border-radius 0 0 $border-radius;
@@ -543,8 +416,18 @@ ul {
 
 @media (max-width: $threshold1) {
   li {
-    width: 3em;
+    width: 5em;
+    height: 5em;
   }
+  .employee-names {
+    font-weight: 900;
+    font-size: 1.7em;
+  }
+  .card {
+    font-size: 1.5em;
+    word-wrap: break-word;
+  }
+
 }
 
 @media (min-width: $threshold1) {
@@ -635,7 +518,7 @@ body{
     font-size: 2em;
     text-align: center;
     margin-top: 5%;
-    width: 100%;
+    width: 80%;
     padding: 0;
     color: #323232;
   }

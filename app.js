@@ -113,7 +113,7 @@ $.ajax({url: "https://talent-backend.herokuapp.com/user/criteria",
         }});
 
 var mostRecentUsers = [];
-const PEOPLE_PER_PAGE = 2;
+const PEOPLE_PER_PAGE = 1;
 var numPages = -1;
 const iconSources = {
     'GitHub' : 'https://cdn.iconscout.com/icon/free/png-512/github-153-675523.png',
@@ -241,8 +241,9 @@ function createCards() {
 $.post("https://talent-backend.herokuapp.com/user", function(data, status){
     // alert("Data: " + data["schools"] + "\nStatus: " + status);
     mostRecentUsers = data['users'];
+    // console.log("count" + data['count'])
     numPages = Math.ceil(data['count']/PEOPLE_PER_PAGE);
-    console.log(numPages)
+    console.log("numPages: " + numPages)
     console.log(mostRecentUsers);
 })
     .done(() => {
@@ -340,16 +341,26 @@ function renderPagination() {
     console.log("this object:" );
     console.log($(this));
     var paginationText = $(this).text();
+    var paginationId = $(this).attr('id')
     if (paginationText == 'Next') {
         currPage += 1;
     }
     else if (paginationText == 'Previous') {
         currPage -= 1;
     }
+    else if (paginationId) {
+        console.log("pagination ID: " + paginationId    );
+        if (paginationId == 'out-of-range-less') {
+            currPage -= 2;
+        }
+        else if (paginationId == 'out-of-range-greater') {
+            currPage += 2;
+        }
+    }
     else {
         currPage = parseInt(paginationText);
     }
-        paramDict['skip'] = (currPage - 1) * PEOPLE_PER_PAGE;
+    paramDict['skip'] = (currPage - 1) * PEOPLE_PER_PAGE;
     // currPage = parseInt($(this).text())
     console.log("paramDict: ");
     console.log(paramDict);
@@ -405,7 +416,7 @@ function createPagination(pages, page) {
     if (page > 2) {
       str += '<li class="no page-item"><a class = "pagination-item" onclick="createPagination(numPages, 1)">1</a></li>';
       if (page > 3) {
-          str += '<li class="out-of-range"><a class = "pagination-item" onclick="createPagination(numPages,'+(page-2)+')">...</a></li>';
+          str += '<li class="out-of-range" ><a class = "pagination-item" id = "out-of-range-less" onclick="createPagination(numPages,'+(page-2)+')">...</a></li>';
       }
     }
     // Determine how many pages to show after the current page index
@@ -436,7 +447,7 @@ function createPagination(pages, page) {
     // section (before the Next button)
     if (page < pages-1) {
       if (page < pages-2) {
-        str += '<li class="out-of-range"><a class = "pagination-item" onclick="createPagination(numPages,'+(page+2)+')">...</a></li>';
+        str += '<li class="out-of-range" ><a class = "pagination-item" id = "out-of-range-greater" onclick="createPagination(numPages,'+(page+2)+')">...</a></li>';
       }
       str += '<li class="page-item no"><a class = "pagination-item" onclick="createPagination(numPages, numPages)">'+pages+'</a></li>';
     }
