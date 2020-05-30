@@ -14,7 +14,7 @@ const urlParams = new URLSearchParams(queryString);
 const gen_code = urlParams.get('_ijt');
 console.log("firstName: " + urlParams);
 console.log("color: " + urlParams.get('color'));
-
+var currPage = 1;
 var criteria = {};
 
 var paginationItems;
@@ -334,8 +334,11 @@ $.post("https://talent-backend.herokuapp.com/user", function(data, status){
     numPages = Math.ceil(data['count']/PEOPLE_PER_PAGE);
     console.log("numPages: " + numPages)
     console.log(mostRecentUsers);
+    document.getElementById('load-spinner').style.display = 'flex'
 })
     .done(() => {
+
+        document.getElementById('load-spinner').style.display = 'none'
         createCards();
         renderPagination();
     });
@@ -357,6 +360,7 @@ const defaultValues = {
 }
 
 $('.search-input').change(() => {
+    currPage = 1;
     console.log("CHANGE")
     // console.log("FSAFAFA" + $(this));
     var paramDict = {};
@@ -366,6 +370,7 @@ $('.search-input').change(() => {
         if (item.value && item.value != defaultValues[item.id]) {
             paramDict[idToParam[item.id]] = item.value;
         }
+        document.getElementById('load-spinner').style.display = 'flex'
     })
     console.log(paramDict);
     $.ajax('https://talent-backend.herokuapp.com/user',
@@ -377,6 +382,7 @@ $('.search-input').change(() => {
             success:
     // $.get('https://talent-backend.herokuapp.com/user', paramDict,
         function(data, status) {
+            document.getElementById('load-spinner').style.display = 'none'
             console.log(data);
             mostRecentUsers = data['users'];
             numPages = Math.ceil(data['count']/PEOPLE_PER_PAGE);
@@ -411,7 +417,7 @@ $(document).click(function() {
 
 
 
-var currPage = 1;
+
 // let pages = numPages;
 
 function renderPagination() {
@@ -420,44 +426,44 @@ function renderPagination() {
     paginationItems = $(".pagination-item");
 
     paginationItems.click(function () {
-    var paramDict = {};
-    Array.from(searchFields).forEach((item, index) => {
-        console.log(item.id);
-        if (item.value && item.value != defaultValues[item.id]) {
-            paramDict[idToParam[item.id]] = item.value;
+        document.getElementById('load-spinner').style.display = 'flex'
+        var paramDict = {};
+        Array.from(searchFields).forEach((item, index) => {
+            console.log(item.id);
+            if (item.value && item.value != defaultValues[item.id]) {
+                paramDict[idToParam[item.id]] = item.value;
+            }
+        })
+        console.log("this object:" );
+        console.log($(this));
+        var paginationText = $(this).text();
+        var paginationId = $(this).attr('id')
+        if (paginationText == 'Next') {
+            currPage += 1;
         }
-    })
-    console.log("this object:" );
-    console.log($(this));
-    var paginationText = $(this).text();
-    var paginationId = $(this).attr('id')
-    if (paginationText == 'Next') {
-        currPage += 1;
-    }
-    else if (paginationText == 'Previous') {
-        currPage -= 1;
-    }
-    else if (paginationId) {
-        console.log("pagination ID: " + paginationId    );
-        if (paginationId == 'out-of-range-less') {
-            currPage -= 2;
+        else if (paginationText == 'Previous') {
+            currPage -= 1;
         }
-        else if (paginationId == 'out-of-range-greater') {
-            currPage += 2;
+        else if (paginationId) {
+            console.log("pagination ID: " + paginationId    );
+            if (paginationId == 'out-of-range-less') {
+                currPage -= 2;
+            }
+            else if (paginationId == 'out-of-range-greater') {
+                currPage += 2;
+            }
         }
-    }
-    else {
-        currPage = parseInt(paginationText);
-    }
-    paramDict['skip'] = (currPage - 1) * PEOPLE_PER_PAGE;
-    // currPage = parseInt($(this).text())
-    console.log("paramDict: ");
-    console.log(paramDict);
+        else {
+            currPage = parseInt(paginationText);
+        }
+        paramDict['skip'] = (currPage - 1) * PEOPLE_PER_PAGE;
+        // currPage = parseInt($(this).text())
+        console.log("paramDict: ");
+        console.log(paramDict);
 
-    // Array.from(paginationItems).forEach((item, index) => {
-    //     if (item.className == 'active'
-    // });
-
+        // Array.from(paginationItems).forEach((item, index) => {
+        //     if (item.className == 'active'
+        // });
     $.ajax('https://talent-backend.herokuapp.com/user',
         {
             type: 'POST',
@@ -467,6 +473,7 @@ function renderPagination() {
             success:
             // $.get('https://talent-backend.herokuapp.com/user', paramDict,
                 function (data, status) {
+                    document.getElementById('load-spinner').style.display = 'none'
                     console.log(data);
                     mostRecentUsers = data['users'];
                     numPages = Math.ceil(data['count'] / PEOPLE_PER_PAGE);
@@ -837,3 +844,4 @@ function getCookie(c_name) {
     }
     return "";
 }
+
