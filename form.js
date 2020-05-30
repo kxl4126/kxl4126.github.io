@@ -36,10 +36,9 @@ $.ajax({
 });
 
 var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+const links = ['GitHub', 'LinkedIn', 'Website', 'Resume']
 
 function renderForm () {
-    console.log(":FSAFSAFAFAFAS")
-
 
     autocomplete(document.getElementById("last-job-company"), companies);
     // autocomplete(document.getElementById('test-input'), countries);
@@ -65,6 +64,10 @@ function renderForm () {
     else {
         $("#college").val("College")
     }
+
+    if (initialUser['description']) {
+        $("#description").val(initialUser['description'])
+    }
     // if (initialUser['location']) {
     //     if (initialUser['location']['state']) {
     //         $("#location-state").val(initialUser['location']['state'])
@@ -76,10 +79,24 @@ function renderForm () {
     // $("#location-state").val('Texas')
     if (initialUser['state']) {
             $("#location-state").val(initialUser['state'])
-        }
-    if (initialUser['city']) {
-        $("#location-city").val(initialUser['city'])
     }
+    if (initialUser['city']) {
+        $("#location-city").empty()
+        $("#location-city").val(initialUser['city'])
+        select = document.getElementById("location-city")
+        console.log($("#location-state").val());
+        var option = document.createElement("option");
+        option.text = 'City';
+        option.value = 'City';
+        select.appendChild(option);
+        citiesPerState[initialUser['state']].forEach((item, index) => {
+            option = document.createElement("option");
+            option.text = item;
+            option.value = item;
+            select.appendChild(option);
+        })
+    }
+
 
     if (initialUser['searchingPosition']) {
         $("#searching-position").val(initialUser['searchingPosition']['name'])
@@ -87,6 +104,25 @@ function renderForm () {
     }
     if (initialUser['category']) {
         $("#form-category").val(initialUser['category'])
+    }
+
+    // links.forEach((item, index) => {
+    //     if (initialUser['links'][item]) {
+    //         $('#' + initialUser['links'][item]).val(initialUser[item])
+    //     }
+    //  }
+    // )
+    if(initialUser['links']) {
+        initialUser['links'].forEach((item, index) => {
+            $('#' + item['name']).val(item['link'])
+        })
+    }
+
+    if(initialUser['relocation'] == 'true') {
+        // document.getElementById("save-button").click()
+        document.getElementById("toggle-element").setAttribute('aria-pressed', 'true');
+        document.querySelector('.toggle__label').innerHTML = 'Open to relocation';
+        relocation = 'true'
     }
 }
 
@@ -224,7 +260,7 @@ function submitForm() {
         userInfo['lastJob'] = {}
         userInfo['lastJob']['company'] = $("#last-job-company").val()
         userInfo['lastJob']['position'] = $("#last-job-position").val()
-        userInfo['lastJob']['duration'] = parseInt($("#last-job-duration").val())
+        userInfo['lastJob']['years'] = parseInt($("#last-job-duration").val())
     }
     if ($("#college").val() != 'College') {
         userInfo['college'] = {}
@@ -239,7 +275,7 @@ function submitForm() {
         userInfo['city'] = $("#location-city").val()
     }
 
-    const links = ['github', 'linkedin', 'website', 'resume']
+
 
     var linksArr = []
     links.forEach((item, index) => {
@@ -260,16 +296,18 @@ function submitForm() {
     if ($("#searching-position").val() && $("#searching-duration").val() != "Job type") {
         userInfo['searchingPosition'] = {};
         if ($("#searching-position").val()) {
-            userInfo['searchingPosition']['position'] = $("#searching-position").val();
+            userInfo['searchingPosition']['name'] = $("#searching-position").val();
         }
         if ($("#searching-duration").val() != "Job type") {
             userInfo['searchingPosition']['duration'] = $("#searching-duration").val();
         }
     }
 
-    if ($("#category").val()) {
-        userInfo['category'] = $("#category").val()
+    if ($("#form-category").val() && $("#form-category").val() != 'Category') {
+        userInfo['category'] = $("#form-category").val()
     }
+
+    userInfo['email'] = 'bruuh@yahoo.com'
 
     userInfo['relocation'] = relocation
     console.log(userInfo);

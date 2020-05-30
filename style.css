@@ -143,17 +143,56 @@ select {
   text-align: left;
   border: 1px solid black;
   font-family: helvetica,courier,arial;
-  color: #323232; }
+  color: #323232;
+  display: inline-block;
+  margin: 0 0 1em;
+  width: 100%;
+  word-wrap: break-word; }
+
+.card:hover {
+  border: 3px solid black; }
+
+.card a {
+  text-decoration: none;
+  color: inherit; }
+
+.card a:hover {
+  text-decoration: underline; }
+
+.icons {
+  height: 1em;
+  width: 1em;
+  margin-right: 1em;
+  margin-left: 1em; }
 
 .employee-names {
   font-weight: 900;
-  font-size: 2em; }
+  font-size: 1.5em; }
+
+.employee-relocation, .employee-category {
+  color: #969696; }
+
+.employee-prev-jobs, .employee-searching-position, .employee-education, .employee-location, .employee-email {
+  margin-top: 0.25em; }
+
+.employee-description {
+  margin-top: 1em; }
+
+.GitHub-link, .LinkedIn-link, .Website-link, .Resume-link {
+  margin-top: 0.5em; }
+
+.GitHub-link {
+  margin-top: 1em; }
 
 #cards {
   width: 80%;
   margin: 5em auto;
   display: grid;
-  grid-gap: 1rem; }
+  grid-gap: 1rem;
+  column-count: 2;
+  margin: 1.5em auto;
+  max-width: 3000px;
+  column-gap: 1.5em; }
 
 .search-label, .search-input {
   padding: 0 0.5em; }
@@ -242,18 +281,24 @@ ul {
   margin: 0;
   display: flex;
   font-family: Roboto, Helvetica, Arial;
-  font-weight: 100; }
+  font-weight: 100;
+  margin-bottom: 2em; }
   ul li {
     color: #323232;
-    display: flex; }
+    display: flex;
+    font-size: 2em; }
     ul li a {
       background-color: white;
       padding: 5px 10px;
-      border-right: 0; }
+      border-right: 0;
+      width: 100%; }
   ul li.active a {
     background-color: black;
     color: white; }
 
+@media (max-width: 1300px) {
+  li {
+    width: 3em; } }
 @media (min-width: 1300px) {
   #product-search {
     grid-template-columns: repeat(2, 1fr); }
@@ -274,10 +319,19 @@ ul {
     grid-template-columns: repeat(4, 1fr); }
 
   #cards {
-    grid-template-columns: repeat(3, 1fr); }
+    grid-template-columns: repeat(2, 1fr); }
 
   .search-element {
-    padding: 0.5em !important; } }
+    padding: 0.5em; }
+
+  #companies-search {
+    padding-right: 0.5em; }
+
+  #categories-search {
+    padding-left: 0.5em; }
+
+  #search-element-last {
+    padding-right: 0; } }
 @media (max-width: 1300px) {
   #product-search {
     grid-template-columns: repeat(1, 1fr); }
@@ -295,5 +349,117 @@ ul {
   .search-element {
     padding-left: 0;
     padding-right: 0; } }
+body {
+  margin: 0; }
+
+.saveButton {
+  width: 12em;
+  height: 3em;
+  border-radius: 2em;
+  background-color: black;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell; }
+
+.saveButton label {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.25em;
+  font-weight: 400; }
+
+#title-top {
+  display: inline-block;
+  font-family: helvetica,courier,arial;
+  font-size: 2em;
+  text-align: center;
+  margin-top: 5%;
+  width: 100%;
+  padding: 0;
+  color: #323232; }
+
+.editButton {
+  width: 12em;
+  height: 3em;
+  border-radius: 2em;
+  background-color: white;
+  text-align: center;
+  line-height: 3em;
+  border: 0.15em solid black;
+  margin-top: 1em;
+  float: right;
+  margin-right: 1em;
+  display: inline-block; }
+
+.editButton label {
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.25em;
+  font-weight: 600; }
+
+.bookmarkButton {
+  height: 2em;
+  width: 2em;
+  display: inline-block;
+  vertical-align: center;
+  display: inline-block; }
+
+.bookmarkOutline {
+  height: 3em;
+  width: 3em;
+  margin-top: 1em;
+  float: right;
+  margin-right: 1em;
+  border: 0.15em solid black;
+  border-radius: 2em;
+  text-align: center;
+  display: table-cell;
+  vertical-align: center; }
+
+.navBar {
+  margin-top: 0%;
+  height: 5em;
+  width: 100%;
+  border-bottom: 0.1em #DCDCDC solid; }
+
+.bmc-button img {
+  height: 1.20em;
+  width: 1.20em;
+  margin-bottom: 0.3em;
+  box-shadow: none;
+  border: none;
+  vertical-align: middle; }
+
+.bmc-button {
+  width: 12em;
+  height: 3em;
+  border-radius: 2em;
+  background-color: white;
+  text-align: center;
+  line-height: 3em;
+  border: 0.15em solid black;
+  margin-top: 1em;
+  float: right;
+  margin-right: 1em;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  font-family: 'Cookie', cursive;
+  text-decoration: none;
+  letter-spacing: 0.05em; }
+
+.bmc-button:hover, .bmc-button:active, .bmc-button:focus {
+  -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+  text-decoration: none;
+  box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+  opacity: 0.85;
+  color: #ffffff; }
+
+.editButton:hover, .editButton:active, .editButton:focus {
+  -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+  text-decoration: none; }
+
+.bookmarkOutline:hover, .bookmarkOutline:active, .bookmarkOutline:focus {
+  -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+  text-decoration: none; }
 
 /*# sourceMappingURL=style.css.map */
