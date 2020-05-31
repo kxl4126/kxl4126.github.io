@@ -180,6 +180,9 @@ select {
   word-wrap: break-word;
   max-width:100%;
   overflow:auto;
+  display: inline-block;
+  width: 100%;
+  margin-top: 1.5em;
 }
 
 .card:hover {
@@ -232,7 +235,7 @@ select {
 #cards {
   width: 80%;
   margin: 5em auto;
-  display: grid;
+  display: flexbox;
   grid-gap: 1rem;
 
 
@@ -525,7 +528,7 @@ ul {
     grid-template-columns: repeat(1, 1fr);
   }
   #cards {
-    grid-template-columns: repeat(1, 1fr);
+    column-count: 1 ;
   }
   .select {
     height: 5em;
