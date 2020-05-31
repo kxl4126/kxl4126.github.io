@@ -212,7 +212,7 @@ select {
   color: rgb(150,150,150);
 }
 
-.employee-prev-jobs, .employee-searching-position, .employee-education, .employee-location, {
+.employee-prev-jobs, .employee-searching-position, .employee-education, .employee-location,{
   margin-top: 0.25em;
 }
 
@@ -221,6 +221,8 @@ select {
 }
 
 .GitHub-link, .LinkedIn-link, .Website-link, .Resume-link, .email {
+  word-wrap: break-word;
+  white-space: nowrap;
   margin-top: 0.5em;
 }
 
@@ -415,20 +417,26 @@ ul {
   font-family: Roboto, Helvetica, Arial;
   font-weight: 100;
   margin-bottom: 2em;
+  text-align:center;
   li {
+    margin-top: 1em;
     color: rgb(50,50,50);
     display: flex;
     font-size: 2em;
-    width:2em;
-    height:2em;
+    width:3em;
+    height:3em;
+    display: inline-block;
     a {
       background-color: white;
       //padding: 5px 10px;
       //border: 2px solid $border-color;
       border-right: 0;
       width: 100%;
-      padding: 0em;
-      padding-top: 0.3em;
+      padding: 0.5em;
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+      //border-radius:50%;
+      //padding-top: 0.3em;
     }
   }
 
@@ -737,4 +745,8 @@ body{
   } 100%, 0% {
     transform: scale(1.0);
   }
+}
+
+#error-message {
+  color:red;
 }

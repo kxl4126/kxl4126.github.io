@@ -178,6 +178,8 @@ select {
   margin-top: 1em; }
 
 .GitHub-link, .LinkedIn-link, .Website-link, .Resume-link, .email {
+  word-wrap: break-word;
+  white-space: nowrap;
   margin-top: 0.5em; }
 
 .GitHub-link {
@@ -307,19 +309,23 @@ ul {
   display: flex;
   font-family: Roboto, Helvetica, Arial;
   font-weight: 100;
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  text-align: center; }
   ul li {
+    margin-top: 1em;
     color: #323232;
     display: flex;
     font-size: 2em;
-    width: 2em;
-    height: 2em; }
+    width: 3em;
+    height: 3em;
+    display: inline-block; }
     ul li a {
       background-color: white;
       border-right: 0;
       width: 100%;
-      padding: 0em;
-      padding-top: 0.3em; }
+      padding: 0.5em;
+      padding-left: 0.75em;
+      padding-right: 0.75em; }
   ul li.active a {
     background-color: white;
     border: 1px solid black;
@@ -580,5 +586,7 @@ body {
     transform: scale(0.4); }
   100%, 0% {
     transform: scale(1); } }
+#error-message {
+  color: red; }
 
 /*# sourceMappingURL=style.css.map */

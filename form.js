@@ -252,9 +252,17 @@ var relocation = 'false'
 function submitForm() {
     console.log("SAVE CLICKED")
     userInfo = {};
+    if (document.getElementById('error-message')) {
+        document.getElementById('error-message').remove()
+    }
     var errorMsg = checkValid()
     if (errorMsg != 'valid') {
         console.log(errorMsg);
+        console.log("FSAFAFAF")
+        var error = document.createElement('div')
+        error.id = 'error-message'
+        error.innerHTML = errorMsg;
+        document.body.appendChild(error)
         return errorMsg;
     }
     if ($("#last-job-company")) {
@@ -335,7 +343,7 @@ function checkValid (userInfo) {
     if ($("#last-job-company").val() && (!$("#last-job-position").val() || !$("#last-job-duration").val())) {
         return errorMsgs['lastJob']['position']
     }
-    if ($("#college").val() != 'College' && !$("#college-degree").val() || $("#college").val() == 'College' && $("#college-degree").val()) {
+    if ($("#college").val() != 'College' && $("#college-degree").val() == 'Degree' || $("#college").val() == 'College' && $("#college-degree").val() != 'Degree') {
         return errorMsgs['college']
     }
     if (!$("#description").val()) {

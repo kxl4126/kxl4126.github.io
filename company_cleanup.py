@@ -2822,7 +2822,7 @@ companies = [
 "npm Inc",
 "salesforce.com",
 "trendmedia",
-"uBiome"]
+"uBiome",]
 companies_set = set()
 
 for company in companies:
