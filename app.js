@@ -113,7 +113,7 @@ $.ajax({url: "https://talent-backend.herokuapp.com/user/criteria",
         }});
 
 var mostRecentUsers = [];
-const PEOPLE_PER_PAGE = 1;
+const PEOPLE_PER_PAGE = 50;
 var numPages = -1;
 var savedPeople = getCookie('savedPeople')
 if (!savedPeople) {

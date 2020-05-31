@@ -10,6 +10,7 @@ if (cookie) {
     savedPeople = JSON.parse(cookie)
 }
 else {
+    savedPeople = []
     console.log("you dont have anyone saved")
 }
 var mostRecentUsers = savedPeople;
@@ -23,8 +24,13 @@ const iconSources = {
     'email': 'envelope.png',
 }
 
-
-createCards()
+if (savedPeople.length == 0) {
+    document.getElementById('empty-msg').style.display = 'relative';
+}
+else {
+    document.getElementById('empty-msg').style.display = 'none';
+    createCards()
+}
 
 
 
