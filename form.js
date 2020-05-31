@@ -120,12 +120,20 @@ function renderForm () {
 
 
 
+    // if(initialUser['relocation'] == 'true') {
+    //     // document.getElementById("save-button").click()
+    //     document.getElementById("toggle-element").setAttribute('aria-pressed', 'true');
+    //     document.querySelector('.toggle__label').innerHTML = 'Open to relocation';
+    //     document.querySelector('.toggle__label').style.color = 'black'
+    //     relocation = 'true'
+    // }
+
     if(initialUser['relocation'] == 'true') {
         // document.getElementById("save-button").click()
-        document.getElementById("toggle-element").setAttribute('aria-pressed', 'true');
-        document.querySelector('.toggle__label').innerHTML = 'Open to relocation';
-        document.querySelector('.toggle__label').style.color = 'black'
-        relocation = 'true'
+        $(#"form-relocation").val('Yes')
+    }
+    else {
+        $(#"form-relocation").val('No')
     }
 }
 
@@ -318,8 +326,10 @@ function submitForm() {
 
     userInfo['email'] = 'bruuh@yahoo.com'
 
-    userInfo['relocation'] = relocation
+    // userInfo['relocation'] = relocation
+    userInfo['relocation'] = $("#form-relocation").val() == 'Yes' ? 'true': 'false';
     console.log(userInfo);
+
     $.ajax({
         url: 'https://talent-backend.herokuapp.com/user/create',
         type: 'POST',

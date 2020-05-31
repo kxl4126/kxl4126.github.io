@@ -351,9 +351,10 @@ body {
    //text-transform: uppercase;
    //font-family: var(--font-label);
    font-size: 1.2em;
-   width: 60%;
+   //width: 60%;
   margin-right: 0;
-  margin-left: 12%;
+  margin-right: 1.2em;
+  //margin-left: 12%;
    //display: flex;
   margin-top: 0.5%;
   color: var(--input-color);
@@ -367,7 +368,7 @@ body {
    height: 0px;
    background: none;
    padding: 0;
-   margin-left: -15em;
+   //margin-left: -15em;
    border: none;
    position: relative;
    cursor: pointer;
@@ -375,6 +376,10 @@ body {
     //margin-top: 1em;
 
   display: block;
+}
+
+.toggle button, .toggle span {
+  display:inline-block;
 }
 
 button:focus {outline:0;}
