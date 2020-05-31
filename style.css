@@ -179,7 +179,6 @@ select {
 
 .GitHub-link, .LinkedIn-link, .Website-link, .Resume-link, .email {
   word-wrap: break-word;
-  white-space: nowrap;
   margin-top: 0.5em; }
 
 .GitHub-link {
@@ -400,7 +399,13 @@ ul {
 
   .search-element {
     padding-left: 0;
-    padding-right: 0; } }
+    padding-right: 0; }
+
+  .navbar-item {
+    display: inline-block; }
+
+  .navBar {
+    text-align: center; } }
 body {
   margin: 0; }
 
