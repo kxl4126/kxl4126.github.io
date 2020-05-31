@@ -10,24 +10,32 @@
 </head>
 <body>
     <div class = "navBar">
+      <div class = "navbar-item">
         <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/talent"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px;font-size:1.5em !important;">Buy me a coffee</span></a>
-        <a href="./form.html">
+       </div>
+       <div class = "navbar-item">
+          <a href="./form.html">
             <div class = "editButton">
                 <label>Edit Profile</label>
             </div>
         </a>
+          </div>
 
+      <div class = "navbar-item">
       <a href = "./list.html">
         <div class = "bookmarkOutline">
             <img src = "bookmark.png" class = "bookmarkButton"></img>
         </div>
       </a>
+        </div>
 
+      <div class = "navbar-item">
       <a href = "./index.html">
         <div class = "bookmarkOutline" id = 'home-div'>
             <img src = "home-icon.png" class = "bookmarkButton"></img>
         </div>
       </a>
+           </div>
     </div>
     <div id = "form-div">
     <form autocomplete="off">
@@ -105,7 +113,7 @@
     <div class="form-group">
 <!--        <span id = "relocation-span">Open to Relocation: </span>-->
         <div class="toggle">
-            <label id = "toggle_text" class="toggle__label" for="toggle-element">Not open to relocation</label>
+            <span id = "toggle_text" class="toggle__label" for="toggle-element">Not open to relocation</span>
             <button
               class="toggle__element"
               id="toggle-element"

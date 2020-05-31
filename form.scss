@@ -338,7 +338,7 @@ body {
 }
 
 .toggle {
-   display: flex;
+   display: block;
    position: relative;
    //left: calc(-1 * calc(var(--metric-toggle-thumb-size) * 2));
    flex-direction: row;
@@ -347,16 +347,17 @@ body {
   vertical-align: center;
 }
 
-.toggle label {
+.toggle span {
    //text-transform: uppercase;
    //font-family: var(--font-label);
    font-size: 1.2em;
    width: 60%;
   margin-right: 0;
-  margin-left: 5%;
+  margin-left: 12%;
    //display: flex;
-  margin-top: 1%;
+  margin-top: 0.5%;
   color: var(--input-color);
+  display: block;
 }
 
 
@@ -366,12 +367,14 @@ body {
    height: 0px;
    background: none;
    padding: 0;
-   margin-left: 0em;
+   margin-left: -15em;
    border: none;
    position: relative;
    cursor: pointer;
    transition: all 0.5s linear;
     //margin-top: 1em;
+
+  display: block;
 }
 
 button:focus {outline:0;}
@@ -441,7 +444,7 @@ body {
   margin-top: 1em;
   //width: 50%;
 }
-#save-button, #save-button label {
+#save-button, #save-button span {
   cursor: pointer;
 }
 
@@ -578,7 +581,17 @@ margin:0;
   color:red;
 }
 
+$threshold1: 1300px;
+$threshold2: 1700px;
 
+@media (max-width: $threshold1) {
+  .navbar-item {
+    display: inline-block;
+  }
+  .navBar {
+    text-align: center;
+  }
+}
 
 
 
