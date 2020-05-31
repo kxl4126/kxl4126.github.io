@@ -1,3 +1,16 @@
+*  {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+    }
+.windowContent :first-child {
+  padding-top: 0;
+  margin-top: 0;
+}
 * { box-sizing: border-box; }
 body {
   font: 16px Arial;
@@ -65,7 +78,7 @@ input[type=submit] {
 
     --group-color-focus: #fff;
     --group-border-focus: var(--input-border-focus);
-    --group-background-focus: #678EFE;
+    --group-background-focus: black;
 
 }
 
@@ -155,9 +168,9 @@ html {
 
 // Center
 body {
-    min-height: 100vh;
+    //min-height: 100vh;
     font-family: 'Mukta Malar', Arial;
-    display: flex;
+    //display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -298,8 +311,8 @@ select {
    --bg-thumb: #ffffff;
    --color-bg: hsl(0, 0%, 95%);
    --color-shadow: hsla(0, 0%, 0%, 0.25);
-   --color-toggle-off-bg: hsl(206, 92%, 46%);
-   --color-toggle-on-bg: hsl(0, 0%, 80%);
+   --color-toggle-off-bg: black;
+   --color-toggle-on-bg: grey;
    --color-smile-bg: black;
    --color-smile-fg: black;
    --font-label: 'Quicksand', sans-serif;
@@ -345,12 +358,12 @@ body {
    height: 0px;
    background: none;
    padding: 0;
-   margin-left: 0em;
+   margin-left: -1em;
    border: none;
    position: relative;
    cursor: pointer;
    transition: all 0.5s linear;
-    margin-top: 0.2em;
+    //margin-top: 1em;
 }
 
 button:focus {outline:0;}
@@ -381,12 +394,12 @@ button:focus {outline:0;}
 }
 
 .toggle button[aria-pressed='true']::before {
-   background-color: #275EFE;
+   background-color: black;
 }
 
 .toggle button[aria-pressed='true']::after {
    border: calc(var(--metric-toggle-thumb-space)) solid
-      #275EFE;
+     black;
    transform: translateX(
       calc(var(--metric-toggle-thumb-size) + var(--metric-toggle-thumb-space))
    );
@@ -395,7 +408,9 @@ button:focus {outline:0;}
 
 /* TOGGLE DECORATION */
 /* IMPROVEMENT: scale like the rest */
-
+body {
+  background-color: white;
+}
 .toggle__decoration {
    position: absolute;
    background-color: var(--color-smile-fg);
@@ -408,7 +423,7 @@ button:focus {outline:0;}
 #save-button {
   margin: auto;
   border-radius: 2em;
-  background: #275EFE;
+  background: black;
   border: 0;
   color: white;
   font-size: 1.2em;
@@ -499,4 +514,130 @@ $threshold2: 1700px;
 //  //width: 50%;
 //}
 //}
+form {
+  margin-top: 2.5%;
+}
+
+.editButton {
+    width : 12em;
+    height : 3em;
+    border-radius: 2em;
+    background-color:white;
+    text-align:center;
+    line-height: 3em;
+    border: 1px solid black;
+    margin-top:1em;
+    float: right;
+    margin-right: 1em;
+    display: inline-block;
+}
+
+.editButton label {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25em;
+    font-weight: 100
+}
+
+//#home-div {
+//  margin-left: 1em;
+//  float:left;
+//}
+
+.bookmarkButton {
+    height:2em;
+    width:2em;
+  display:inline-block;
+  vertical-align: center;
+  display: inline-block;
+    margin-top: 0.5em;
+}
+
+.bookmarkOutline{
+    height:3em;
+    width:3em;
+    margin-top:1em;
+    float: right;
+    margin-right: 1em;
+    border: 1px solid black;
+    border-radius:2em;
+    text-align:center;
+    //vertical-align:middle;
+    //display:table-cell;
+  vertical-align: center;
+}
+
+
+.navBar {
+    display: block;
+    margin-top: 0;
+    height: 5em;
+    width:100%;
+    font-size: 1.5em;
+    //border-bottom: 0.1em #DCDCDC solid;
+}
+
+
+.bmc-button img{
+    height: 1.20em;
+    width: 1.20em;
+    margin-bottom: 0.4em;
+    box-shadow: none;
+    border: none;
+    vertical-align: middle;
+}
+.bmc-button{
+    width : 12em;
+    height : 3em;
+    border-radius: 2em;
+    background-color:white;
+    text-align:center;
+    line-height: 3em;
+    border: 0.15em solid black;
+    margin-top:1em;
+    float: right;
+    margin-right: 1em;
+    text-decoration: none;
+    color:white;
+    background-color: black;
+    font-family:'Cookie', cursive;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+}
+
+.bmc-button:hover, .bmc-button:active, .bmc-button:focus {
+    -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+    text-decoration: none;
+    box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+    opacity: 0.85;
+    color:#ffffff
+}
+
+.editButton:hover, .editButton:active, .editButton:focus {
+    -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+    text-decoration: none;
+}
+
+.bookmarkOutline:hover, .bookmarkOutline:active, .bookmarkOutline:focus {
+    -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+    text-decoration: none;
+}
+
+
+html, body, ul{
+padding:0;
+margin:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

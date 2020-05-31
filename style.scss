@@ -22,14 +22,13 @@ body {
 
 #title-top {
   display: inline-block;
-
   font-size: 2em;
   text-align: center;
   margin-top: 10%;
   width: 80%;
   padding: 0;
   font-family:helvetica,courier,arial;
-  color: rgb(50,50,50);
+  color: black ;
 }
 
 $threshold1: 1300px;
@@ -435,7 +434,7 @@ ul {
 
   li.active a {
     background-color: white;
-    border: 0.1em solid black;
+    border: 1px solid black;
     border-radius: 50%;
     color: black;
   }
@@ -461,6 +460,16 @@ ul {
   .card {
     font-size: 1.7em;
     word-wrap: break-word;
+  }
+  #navBar {
+    display: flex;
+    //text-align: center;
+    align-items: center;
+  }
+  .bookmarkOutline,.bmc-button,.editButton {
+    margin: 0;
+    //display: flex;
+    //margin: auto;
   }
 
 }
@@ -565,7 +574,7 @@ body{
     background-color:white;
     text-align:center;
     line-height: 3em;
-    border: 0.15em solid black;
+    border: 1px solid black;
     margin-top:1em;
     float: right;
     margin-right: 1em;
@@ -574,10 +583,15 @@ body{
 
 .editButton label {
     color: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.25em;
-    font-weight: 600
+    font-weight: 100
 }
+
+//#home-div {
+//  margin-left: 1em;
+//  float:left;
+//}
 
 .bookmarkButton {
     height:2em;
@@ -585,7 +599,7 @@ body{
   display:inline-block;
   vertical-align: center;
   display: inline-block;
-    //margin-top: 0.5em;
+    margin-top: 0.5em;
 }
 
 .bookmarkOutline{
@@ -594,11 +608,11 @@ body{
     margin-top:1em;
     float: right;
     margin-right: 1em;
-    border: 0.15em solid black;
+    border: 1px solid black;
     border-radius:2em;
     text-align:center;
     //vertical-align:middle;
-    display:table-cell;
+    //display:table-cell;
   vertical-align: center;
 }
 
@@ -606,13 +620,13 @@ body{
     margin-top: 0%;
     height: 5em;
     width:100%;
-    border-bottom: 0.1em #DCDCDC solid;
+    //border-bottom: 0.1em #DCDCDC solid;
 }
 
 .bmc-button img{
     height: 1.20em;
     width: 1.20em;
-    margin-bottom: 0.3em;
+    margin-bottom: 0.4em;
     box-shadow: none;
     border: none;
     vertical-align: middle;

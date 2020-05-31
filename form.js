@@ -124,7 +124,7 @@ function renderForm () {
         // document.getElementById("save-button").click()
         document.getElementById("toggle-element").setAttribute('aria-pressed', 'true');
         document.querySelector('.toggle__label').innerHTML = 'Open to relocation';
-        document.querySelector('.toggle__label').style.color = '#275EFE'
+        document.querySelector('.toggle__label').style.color = 'black'
         relocation = 'true'
     }
 }
@@ -470,7 +470,7 @@ function fun(e) {
    } else {
       e.target.setAttribute('aria-pressed', 'true');
       label.innerHTML = 'Open to relocation';
-      label.style.color = '#275EFE';
+      label.style.color = 'black';
       relocation = 'true';
    }
 }

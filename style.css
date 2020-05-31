@@ -26,7 +26,7 @@ body {
   width: 80%;
   padding: 0;
   font-family: helvetica,courier,arial;
-  color: #323232; }
+  color: black; }
 
 #product-search {
   display: grid;
@@ -322,7 +322,7 @@ ul {
       padding-top: 0.3em; }
   ul li.active a {
     background-color: white;
-    border: 0.1em solid black;
+    border: 1px solid black;
     border-radius: 50%;
     color: black; }
 
@@ -337,7 +337,14 @@ ul {
 
   .card {
     font-size: 1.7em;
-    word-wrap: break-word; } }
+    word-wrap: break-word; }
+
+  #navBar {
+    display: flex;
+    align-items: center; }
+
+  .bookmarkOutline, .bmc-button, .editButton {
+    margin: 0; } }
 @media (min-width: 1300px) {
   #product-search {
     grid-template-columns: repeat(2, 1fr); }
@@ -423,7 +430,7 @@ body {
   background-color: white;
   text-align: center;
   line-height: 3em;
-  border: 0.15em solid black;
+  border: 1px solid black;
   margin-top: 1em;
   float: right;
   margin-right: 1em;
@@ -431,16 +438,17 @@ body {
 
 .editButton label {
   color: black;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.25em;
-  font-weight: 600; }
+  font-weight: 100; }
 
 .bookmarkButton {
   height: 2em;
   width: 2em;
   display: inline-block;
   vertical-align: center;
-  display: inline-block; }
+  display: inline-block;
+  margin-top: 0.5em; }
 
 .bookmarkOutline {
   height: 3em;
@@ -448,22 +456,20 @@ body {
   margin-top: 1em;
   float: right;
   margin-right: 1em;
-  border: 0.15em solid black;
+  border: 1px solid black;
   border-radius: 2em;
   text-align: center;
-  display: table-cell;
   vertical-align: center; }
 
 .navBar {
   margin-top: 0%;
   height: 5em;
-  width: 100%;
-  border-bottom: 0.1em #DCDCDC solid; }
+  width: 100%; }
 
 .bmc-button img {
   height: 1.20em;
   width: 1.20em;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.4em;
   box-shadow: none;
   border: none;
   vertical-align: middle; }
