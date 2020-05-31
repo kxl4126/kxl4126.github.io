@@ -446,7 +446,7 @@ body {
   padding: 0.5em;
   padding-left: 1em;
   padding-right: 1em;
-  margin-top: 1em;
+  margin-top: 2em;
   //width: 50%;
 }
 #save-button, #save-button span {
@@ -595,6 +595,12 @@ $threshold2: 1700px;
   }
   .navBar {
     text-align: center;
+  }
+
+}
+@media (max-width: 850px) {
+  form {
+    margin-top: 8em;
   }
 }
 
