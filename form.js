@@ -130,10 +130,10 @@ function renderForm () {
 
     if(initialUser['relocation'] == 'true') {
         // document.getElementById("save-button").click()
-        $(#"form-relocation").val('Yes')
+        $("#form-relocation").val('Yes')
     }
     else {
-        $(#"form-relocation").val('No')
+        $("#form-relocation").val('No')
     }
 }
 
